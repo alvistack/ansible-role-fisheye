@@ -111,10 +111,10 @@ case "$1" in
         cd $FISHEYE_INST
         mkdir -p $FISHEYE_INST/var/log
         CMD="$FISHEYE_CMD $@ $FISHEYE_ARGS"
-        echo "Starting FishEye/Crucible... Output redirected to $FISHEYE_INST/var/log/fisheye.out"
         if [ "$PRGRUNMODE" = "true" ] ; then
-            nohup sh -c "exec $CMD" >> $FISHEYE_INST/var/log/fisheye.out 2>&1
+            sh -c "exec $CMD"
         else
+            echo "Starting FishEye/Crucible... Output redirected to $FISHEYE_INST/var/log/fisheye.out"
             nohup sh -c "exec $CMD" >> $FISHEYE_INST/var/log/fisheye.out 2>&1 &
         fi
 
