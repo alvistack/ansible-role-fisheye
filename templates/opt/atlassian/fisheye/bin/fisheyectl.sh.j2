@@ -49,7 +49,7 @@ if [ ! -x "$JAVACMD" ] ; then
 fi
 
 FISHEYE_OPTS=`$JAVACMD -cp $FISHEYE_HOME/fisheyeboot.jar com.cenqua.fisheye.boot.OptsSetter`
-FISHEYE_OPTS="-Xms{{ fisheye_jvm_minimum_memory }} -Xmx{{ fisheye_jvm_maximum_memory }} {{ fisheye_jvm_support_recommended_args }} $FISHEYE_OPTS"
+FISHEYE_OPTS="-Xms{{ fisheye_jvm_minimum_memory }} -Xmx{{ fisheye_jvm_maximum_memory }} {{ fisheye_jvm_support_recommended_args }} -Dfile.encoding=UTF-8 $FISHEYE_OPTS"
 
 FISHEYE_CMD="$JAVACMD $FISHEYE_OPTS -Dfisheye.library.path=$FISHEYE_LIBRARY_PATH -Dfisheye.inst=$FISHEYE_INST -Djava.awt.headless=true -Djava.endorsed.dirs=$FISHEYE_HOME/lib/endorsed -jar $FISHEYE_HOME/fisheyeboot.jar"
 
