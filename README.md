@@ -126,7 +126,7 @@ Role Variables
 <tr class="odd">
 <td>fisheye_url</td>
 <td>no</td>
-<td><code>https://downloads.atlassian.com/software/fisheye/downloads/fisheye-4.5.0.zip</code></tr>
+<td><code>https://downloads.atlassian.com/software/fisheye/downloads/fisheye-4.5.0.zip</code></td>
 <td></td>
 <td>URL for download archive</td>
 </tr>
