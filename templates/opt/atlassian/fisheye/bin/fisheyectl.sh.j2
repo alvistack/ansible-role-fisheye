@@ -54,9 +54,9 @@ FISHEYE_CMD="$JAVACMD $FISHEYE_OPTS -Dfisheye.library.path=$FISHEYE_LIBRARY_PATH
 # set the location of the pid file
 if [ -z "$CATALINA_PID" ] ; then
     if [ -n "$FISHEYE_INST" ] ; then
-        CATALINA_PID="$FISHEYE_INST"/var/fisheye.lck
+        CATALINA_PID="$FISHEYE_INST"/var/catalina.pid
     elif [ -n "$FISHEYE_HOME" ] ; then
-        CATALINA_PID="$FISHEYE_HOME"/var/fisheye.lck
+        CATALINA_PID="$FISHEYE_HOME"/var/catalina.pid
     fi
 fi
 export CATALINA_PID
