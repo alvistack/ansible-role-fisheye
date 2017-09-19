@@ -54,6 +54,8 @@
   with_items:
     - { dest: "{{ fisheye_catalina }}", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
     - { dest: "{{ fisheye_home }}", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
+    - { dest: "{{ fisheye_home }}/var", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
+    - { dest: "{{ fisheye_home }}/var/log", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
   tags: fisheye
 
 - name: unarchive package
@@ -77,6 +79,7 @@
   with_items:
     - { src: "etc/init.d/fisheye.j2", dest: "/etc/init.d/fisheye", owner: "root", group: "root", mode: "0755" }
     - { src: "opt/atlassian/fisheye/bin/fisheyectl.sh.j2", dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755" }
+    - { src: "opt/atlassian/fisheye/bin/start.sh.j2", dest: "{{ fisheye_catalina }}/bin/start.sh", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755" }
     - { src: "opt/atlassian/fisheye/config.xml.j2", dest: "{{ fisheye_catalina }}/config.xml", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0644" }
   tags: fisheye
 
