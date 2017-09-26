@@ -64,12 +64,12 @@ case "$1" in
         echo $! > "$CATALINA_PID"
 
         if [ $? = 0 ]; then
-            echo "Starting FishEye/Crucible... Output redirected to $CATALINA_LOG"
+            echo "Starting Fisheye/Crucible... Output redirected to $CATALINA_LOG"
         else
             if [-f "$CATALINA_PID" ]; then
                 rm -f "$CATALINA_PID" >/dev/null 2>&1
             fi
-            echo "There was a problem starting the FishEye/Crucible"
+            echo "There was a problem starting the Fisheye/Crucible"
         fi
         ;;
     stop)

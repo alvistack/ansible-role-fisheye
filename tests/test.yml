@@ -26,6 +26,21 @@
     - role: ansible-role-apt
     - role: ansible-role-yum
     - role: ansible-role-java
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-fisheye
+      # Owner and group for Fisheye.
+      fisheye_owner: "daemon"
+      fisheye_group: "daemon"
+      # Location for the $FISHEYE_HOME directory.
+      fisheye_home: "/var/atlassian/application-data/fisheye"
+      # Location for the $FISHEYE_CATALINA directory.
+      fisheye_catalina: "/opt/atlassian/fisheye"
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/fisheye/lib/mariadb-connector-java.jar"
