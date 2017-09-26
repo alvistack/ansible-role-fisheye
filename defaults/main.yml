@@ -14,16 +14,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-fisheye_catalina: "/opt/atlassian/fisheye"
-fisheye_connector_port: "8060"
-fisheye_context_path: ~
-fisheye_group: "daemon"
-fisheye_home: "/var/atlassian/application-data/fisheye"
-fisheye_jvm_maximum_memory: "1024m"
-fisheye_jvm_minimum_memory: "512m"
-fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+# Owner and group for Fisheye.
 fisheye_owner: "daemon"
+fisheye_group: "daemon"
+
+# Location for the $FISHEYE_HOME directory.
+fisheye_home: "/var/atlassian/application-data/fisheye"
+
+# Location for the $FISHEYE_CATALINA directory.
+fisheye_catalina: "/opt/atlassian/fisheye"
+
+# Fisheye JVM minimal and maximum memory usage.
+fisheye_jvm_minimum_memory: "512m"
+fisheye_jvm_maximum_memory: "1024m"
+
+# Fisheye Apache Tomcat connector and server port.
+fisheye_connector_port: "8060"
+fisheye_server_port: "8059"
+
+# Context path for Fisheye installation.
+fisheye_context_path: ~
+
+# If Fisheye running behide reverse proxy, setup `fisheye_scheme` with whatever
+# `http` or `https`, and supply `fisheye_proxy_name` with its domain name.
 fisheye_proxy_name: ~
 fisheye_scheme: ~
-fisheye_server_port: "8059"
+
+# Atlassian Support recommended JVM arguments.
+fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+
+# URL for download Fisheye archive.
 fisheye_url: "https://downloads.atlassian.com/software/fisheye/downloads/fisheye-4.5.0.zip"
