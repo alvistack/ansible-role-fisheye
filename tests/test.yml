@@ -38,9 +38,25 @@
       fisheye_home: "/var/atlassian/application-data/fisheye"
       # Location for the $FISHEYE_CATALINA directory.
       fisheye_catalina: "/opt/atlassian/fisheye"
+      # Fisheye Apache Tomcat connector and server port.
+      fisheye_connector_port: "8060"
+      fisheye_server_port: "8059"
 
 - hosts: all
   remote_user: root
   roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/fisheye/lib/mariadb-connector-java.jar"
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: service fisheye start
+      service:
+        name: "fisheye"
+        enabled: "yes"
+
+    - name: check port
+      wait_for:
+        port: "8060"
+        timeout: "300"
