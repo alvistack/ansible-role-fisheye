@@ -38,6 +38,9 @@
       fisheye_home: "/var/atlassian/application-data/fisheye"
       # Location for the $FISHEYE_CATALINA directory.
       fisheye_catalina: "/opt/atlassian/fisheye"
+      # Fisheye Apache Tomcat connector and server port.
+      fisheye_connector_port: "8060"
+      fisheye_server_port: "8059"
 
 - hosts: all
   remote_user: root
