@@ -47,16 +47,3 @@
   roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/fisheye/lib/mariadb-connector-java.jar"
-
-- hosts: all
-  remote_user: root
-  tasks:
-    - name: service fisheye start
-      service:
-        name: "fisheye"
-        enabled: "yes"
-
-    - name: check port
-      wait_for:
-        port: "8060"
-        timeout: "300"
