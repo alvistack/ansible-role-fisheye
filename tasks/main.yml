@@ -62,7 +62,7 @@
   shell: |
     ARCHIVE="`mktemp --suffix=.zip`"
     curl -sL {{ fisheye_url }} > $ARCHIVE
-    TMP_DIR="`mktemp -d`" && unzip $ARCHIVE -qq -x -d $TMP_DIR && rsync -av $TMP_DIR/*/ {{ fisheye_catalina }} && rm -rf $TMP_DIR
+    TMP_DIR="`mktemp -d`" && unzip -qq $ARCHIVE -x -d $TMP_DIR && rsync -av $TMP_DIR/*/ {{ fisheye_catalina }} && rm -rf $TMP_DIR
     chown -Rf {{ fisheye_owner }}:{{ fisheye_group }} {{ fisheye_catalina }}
     rm -rf $ARCHIVE
   args:
