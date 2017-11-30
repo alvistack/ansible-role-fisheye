@@ -44,4 +44,4 @@ fisheye_scheme: ~
 fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
 # URL for download Fisheye archive.
-fisheye_url: "https://downloads.atlassian.com/software/fisheye/downloads/fisheye-4.5.0.zip"
+fisheye_url: "https://downloads.atlassian.com/software/fisheye/downloads/fisheye-4.5.1.zip"
