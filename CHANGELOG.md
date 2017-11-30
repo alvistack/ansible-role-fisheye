@@ -4,6 +4,10 @@ Ansible Role for Fisheye
 1.2.0 - TBC
 -----------
 
+### Major Changes
+
+-   Upgrade to Fisheye 4.5.1
+
 1.1.0 - 2017-11-23
 ------------------
 
