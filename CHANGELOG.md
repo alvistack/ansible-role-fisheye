@@ -7,6 +7,7 @@ Ansible Role for Fisheye
 ### Major Changes
 
 -   Upgrade to Fisheye 4.5.1
+-   Add Ubuntu 17.10 and 18.04 support
 
 1.1.0 - 2017-11-23
 ------------------
