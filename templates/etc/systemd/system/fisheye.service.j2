@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=Atlassian Fisheye
+After=syslog.target
+
+[Service]
+User=daemon
+Group=daemon
+ExecStart=/etc/init.d/fisheye start
+ExecStop=/etc/init.d/fisheye stop
+PIDFile=/opt/atlassian/fisheye/work/catalina.pid
+
+[Install]
+WantedBy=multi-user.target

@@ -22,12 +22,8 @@ FISHEYE_CATALINA_PID=${FISHEYE_CATALINA}/var/catalina.pid
 start() {
     echo "Starting Fisheye: "
 
-    mkdir -p ${FISHEYE_HOME}
-    chmod -f 755 ${FISHEYE_HOME}
-    chown -Rf ${FISHEYE_OWNER}:${FISHEYE_GROUP} ${FISHEYE_HOME}
-
     if [ "x${USER}" != "x${FISHEYE_OWNER}" ]; then
-        su -s /bin/bash ${FISHEYE_OWNER} -c "${FISHEYE_CATALINA}/bin/start.sh $@"
+        su -l -s /bin/bash ${FISHEYE_OWNER} -c "${FISHEYE_CATALINA}/bin/start.sh $@"
     else
         ${FISHEYE_CATALINA}/bin/start.sh $@
     fi
@@ -39,7 +35,7 @@ stop() {
     echo "Shutting down Fisheye: "
 
     if [ "x${USER}" != "x${FISHEYE_OWNER}" ]; then
-        su -s /bin/bash ${FISHEYE_OWNER} -c "${FISHEYE_CATALINA}/bin/stop.sh $@"
+        su -l -s /bin/bash ${FISHEYE_OWNER} -c "${FISHEYE_CATALINA}/bin/stop.sh $@"
     else
         ${FISHEYE_CATALINA}/bin/stop.sh $@
     fi
