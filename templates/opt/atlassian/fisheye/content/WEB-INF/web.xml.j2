@@ -1,0 +1,3439 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- {{ ansible_managed }} -->
+<web-app
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        metadata-complete="true"
+        version="3.0">
+    <display-name>FishEye WebApp</display-name>
+
+    <session-config>
+        <cookie-config>
+            <name>FESESSIONID</name>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
+    <!-- Listeners -->
+    <!-- load the Spring context from WEB-INF/applicationContext.xml -->
+    <listener>
+        <listener-class>
+            com.cenqua.fisheye.web.FisheyeContextLoader
+        </listener-class>
+    </listener>
+
+
+    <!-- Define Filters -->
+
+    <!-- Plugin filters -->
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-after-encoding-request</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>after-encoding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>REQUEST</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-after-encoding-forward</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>after-encoding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>FORWARD</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-after-encoding-include</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>after-encoding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>INCLUDE</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-after-encoding-error</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>after-encoding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>ERROR</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-login-request</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>REQUEST</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-login-forward</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>FORWARD</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-login-include</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>INCLUDE</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-login-error</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>ERROR</param-value>
+        </init-param>
+    </filter>
+
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-decoration-request</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-decoration</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>REQUEST</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-decoration-forward</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-decoration</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>FORWARD</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-decoration-include</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-decoration</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>INCLUDE</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-decoration-error</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-decoration</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>ERROR</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-request</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-dispatch</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>REQUEST</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-forward</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-dispatch</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>FORWARD</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-include</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-dispatch</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>INCLUDE</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-error</filter-name>
+        <filter-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletFilterModuleContainerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>before-dispatch</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dispatcher</param-name>
+            <param-value>ERROR</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>ProductInfoFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>spring-request-context-filter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>cleanup-spring-request-attributes</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.CleanupSpringRequestAttributesFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>trustedApplicationsFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>profilingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>upfrontFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>defaultRepoForwardingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>CruFilter</filter-name>
+        <filter-class>com.atlassian.crucible.filters.CrucibleFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>totalityFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>FishEyeRestFilter</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.FishEyeRestFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>CrucibleRestFilter</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.CrucibleRestFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>CommonRestFilter</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.CommonRestFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>Compress</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.CustomIncludableGzipFilter</filter-class>
+    </filter>
+
+    <!-- this filter is used to rewrite through the /s/* filter to add caching headers. see: urlrewrite.xml -->
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>securityHeaders</filter-name>
+        <filter-class>com.cenqua.fisheye.web.filters.SecurityHeadersFilter</filter-class>
+    </filter>
+
+    <!-- Map Filters -->
+    <!-- notes on ordering:
+      Simple filters that do not depend on the url should go first, and can just be REQUEST.
+
+      Then come url-rewriting filters, they must be REQUEST and FORWARD.
+
+      Then come other filters (depend on url and therefore depend on rewrites), they must be REQUEST and FORWARD too.
+
+
+    -->
+
+    <filter-mapping>
+        <filter-name>profilingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>securityHeaders</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>upfrontFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-after-encoding-request</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-after-encoding-forward</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-after-encoding-include</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-after-encoding-error</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>ProductInfoFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>Compress</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/s/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-login-request</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-login-forward</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-login-include</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-login-error</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>trustedApplicationsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>totalityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>defaultRepoForwardingFilter</filter-name>
+        <url-pattern>/reports/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <!-- put this last so that request scope injections happen after all our filters -->
+    <filter-mapping>
+        <filter-name>spring-request-context-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>cleanup-spring-request-attributes</filter-name>
+        <url-pattern>/plugins/servlet/embedded-crowd/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CruFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-decoration-request</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-decoration-forward</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-decoration-include</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-decoration-error</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/plugins/*</url-pattern>
+        <url-pattern>/profile/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Must come before plugin dispatch filter as it needs to filter requests before they get to the REST plugin -->
+    <filter-mapping>
+        <filter-name>CrucibleRestFilter</filter-name>
+        <url-pattern>/rest/api/1.0/rest-service/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!-- Must come before plugin dispatch filter as it needs to filter requests before they get to the REST plugin -->
+    <filter-mapping>
+        <filter-name>FishEyeRestFilter</filter-name>
+        <url-pattern>/rest/api/1.0/rest-service-fe/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CommonRestFilter</filter-name>
+        <url-pattern>/rest/api/1.0/rest-service-fecru/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-request</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-forward</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-include</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>filter-plugin-dispatcher-before-dispatch-error</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>servlet-module-container-servlet</servlet-name>
+        <servlet-class>com.atlassian.fisheye.plugin.servlet.FisheyeServletModuleContainerServlet</servlet-class>
+        <load-on-startup>9</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>MigrateDBProgressServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.setup.MigrateDBProgressServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>CurrentStaticRedirectServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.CurrentStaticRedirectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.LoginServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.LogoutServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.ActionDispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCvsRemapperServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.ViewCvsRemapperServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>ActivityStreamServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.ActivityStreamServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>RestApiServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.api.RestApiServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>XmlRpcApiServlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.api.XmlRpcApiServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>webwork</servlet-name>
+        <servlet-class>com.opensymphony.webwork.dispatcher.ServletDispatcher</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>file-server</servlet-name>
+        <servlet-class>com.atlassian.fisheye.plugin.webresource.FisheyeFileServerServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>gwtServlet</servlet-name>
+        <servlet-class>com.atlassian.fecru.gwt.servlet.GwtRPCRoutingServlet</servlet-class>
+    </servlet>
+
+    <!-- repository management -->
+    <servlet>
+        <servlet-name>git-server</servlet-name>
+        <servlet-class>com.atlassian.fisheye.repomgmt.servlet.GitServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>error-servlet</servlet-name>
+        <servlet-class>com.cenqua.fisheye.web.ErrorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>git-server</servlet-name>
+        <url-pattern>/git/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- end repository management -->
+
+    <servlet>
+        <servlet-name>uploadServlet</servlet-name>
+        <!-- This is the default servlet, it puts files in session -->
+        <servlet-class>com.atlassian.fecru.gwt.servlet.GwtSshKeyUploadServlet</servlet-class>
+        <init-param>
+            <param-name>maxSize</param-name>
+            <param-value>5</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadServlet</servlet-name>
+        <url-pattern>*.gupld</url-pattern>
+    </servlet-mapping>
+
+    <!-- the comment below is the place where the servlets which point at the pre-compiled JSPs go, so don't remove it -->
+    
+<!--
+Automatically created by JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>org.apache.jsp._500_jsp</servlet-name>
+        <servlet-class>org.apache.jsp._500_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.x00_005fjson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.x00_005fjson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp._404_jsp</servlet-name>
+        <servlet-class>org.apache.jsp._404_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp._403_jsp</servlet-name>
+        <servlet-class>org.apache.jsp._403_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.admin_002dapi.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.admin_002dapi.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dgeneral_002dpage_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.atl_002dgeneral_002dpage_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.crucible_002dreport_002dtab_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.crucible_002dreport_002dtab_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dadmin_002dpage_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.atl_002dadmin_002dpage_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dpopup_002dpage_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.atl_002dpopup_002dpage_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dreport_002dtab_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dreport_002dtab_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dpopup_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dpopup_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002duser_002dprofile_002dtab_002ddecorator_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.decorators.fisheye_002duser_002dprofile_002dtab_002ddecorator_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.projectList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.projectList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005ferror_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005ferror_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.signup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.signup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.nochangeset_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.nochangeset_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.repositoryList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.repositoryList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.projectLocLegend_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.projectLocLegend_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.acceptinvite_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.acceptinvite_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirlist_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.dirlist_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_005fsuccess_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_005fsuccess_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005fsuccess_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005fsuccess_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activityStreamRSS_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.activityStreamRSS_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.mostActiveCommitters_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.mostActiveCommitters_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activitystream_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.activitystream_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changeset_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.changeset_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activitystreamAjax_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.activitystreamAjax_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.login_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.login_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changelogdir_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.changelogdir_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.aboutBoxContents_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.aboutBoxContents_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changelogCalendar_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.changelogCalendar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.chart_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.chart_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.per_002dline_002dhistory_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.per_002dline_002dhistory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changesettooltip_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.changesettooltip_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changesetPageAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.changesetPageAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.rdiff_005fusage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.rdiff_005fusage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.project_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.project_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.logout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.logout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.login_005fjson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.login_005fjson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.reportList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.reportList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.userLocLegend_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.userLocLegend_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.annotate_005fnot_005ffound_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.annotate_005fnot_005ffound_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.empty_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.empty_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.changesetDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.visualisation.changesetDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.visualisation_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.visualisation.visualisation_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.branchFinderAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.visualisation.branchFinderAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotRunning_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotRunning_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryDisabled_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.repositoryDisabled_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotSupported_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotSupported_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_005fjson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_005fjson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.exceededUserLimit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.common.exceededUserLimit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin_002dapi.help_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin_002dapi.help_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.noissue_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.jira.issue.noissue_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.jira.issue.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.tooltip_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.jira.issue.tooltip_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.jiraRedirectError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.jira.issue.jiraRedirectError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.inline_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.jira.issue.inline_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadSubTreeAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadSubTreeAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadFilePaneAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadFilePaneAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dvis_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dvis_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.crureviewtooltip_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.crureviewtooltip_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.reviewallcomments_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.reviewallcomments_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dwrapper_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dwrapper_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.home.dashboard_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.home.dashboard_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.notcruuser_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.notcruuser_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.storeStickyPreferenceResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.storeStickyPreferenceResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.generalError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.generalError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.nopermission_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.nopermission_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.changeStateAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.changeStateAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.simpleAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.simpleAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxUserError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxUserError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.noreview_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.noreview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxRedirect_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxRedirect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.remoteRequestAjaxError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.remoteRequestAjaxError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.updatedJiraTime_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.updatedJiraTime_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.getJiraResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.getJiraResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.jiraTimeResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.jiraTimeResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.worked_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.worked_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewObjectivesResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewObjectivesResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateSnippetSyntaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateSnippetSyntaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewTitleResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewTitleResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewSummaryResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewSummaryResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.rss.rssReviewFilter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.rss.rssReviewFilter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.project.project_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.project.project_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.wiki.preview_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.wiki.preview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewLandingPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewLandingPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fchangeRevResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fchangeRevResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.iterablePatchesResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.iterablePatchesResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fbrowse_005fdirlist_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fbrowse_005fdirlist_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.selectProjectDialogAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.selectProjectDialogAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.anchorPatchResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.anchorPatchResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.loadFullHistoryDropdown_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.loadFullHistoryDropdown_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fdetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fdetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fchangelogAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fchangelogAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.newReviewFromChangesetAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.newReviewFromChangesetAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fselectRevisions_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fselectRevisions_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewErrorPage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewErrorPage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.changeDiffDropdown_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.changeDiffDropdown_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.findJiraForReviewResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.findJiraForReviewResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.ajax.constraintFinder_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.create.ajax.constraintFinder_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestGoodResult_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestGoodResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.database_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.database_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestBadResult_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestBadResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.editDatabase_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.editDatabase_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemeError_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemeError_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPSAction_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPSAction_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemes_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.createAgilePSAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.createAgilePSAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPermissionScheme_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPermissionScheme_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.snippet.snippet_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.snippet.snippet_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectdelete_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectdelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.listprojects_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.listprojects_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectform_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectform_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.preview_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.preview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.commentSearchResults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.commentSearchResults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.projectFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.projectFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleSourceFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleSourceFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleUserFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleUserFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewerFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewerFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.suggestReviewersResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.suggestReviewersResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.snippetReview_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.snippetReview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.createSnippet_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.createSnippet_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.printSnippet_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.printSnippet_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.replyCommentResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.replyCommentResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.displayFrxInnerDiv_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.displayFrxInnerDiv_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveNewFrxsResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveNewFrxsResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.commentIssueAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.commentIssueAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.reviewUpdatedResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.reviewUpdatedResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.redisplayFrxDiv_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.redisplayFrxDiv_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.review_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.review_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.worked_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.worked_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.frxCommentResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.frxCommentResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.resolveAllSubtasksAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.resolveAllSubtasksAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveCommentsResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveCommentsResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.getReviewerStatusJson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.getReviewerStatusJson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveReviewDetailsResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveReviewDetailsResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.basicCommentAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.basicCommentAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.multiCommentIssueAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.multiCommentIssueAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.generalCommentResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.generalCommentResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.activeUserFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.ajax.activeUserFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.repositoryFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.ajax.repositoryFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.changelog.constraintsFinderResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.ajax.changelog.constraintsFinderResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.committer.committerSummaryAjax_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.committer.committerSummaryAjax_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.committer.committer_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.committer.committer_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.license.licenseExceeded_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.license.licenseExceeded_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.addStarAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.star.addStarAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.removeStarAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.star.removeStarAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.setStarLabelAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.star.setStarLabelAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.getStarLabelAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.star.getStarLabelAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userpassword_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userpassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editDownloadPolicy_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editDownloadPolicy_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmdelete_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmdelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002ddone_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002ddone_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userrename_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userrename_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsysadmins_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editsysadmins_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.migrateprogressajax_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.migrateprogressajax_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editcrusettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editcrusettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmbulk_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmbulk_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.addusermapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.addusermapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editdefectclassifications_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editdefectclassifications_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editdefaultviewcvsmapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editdefaultviewcvsmapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groups_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.groups_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.pipelinejson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.pipelinejson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.pluginsRescanned_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.pluginsRescanned_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usergroups_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.usergroups_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.sendtestemail_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.sendtestemail_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.restKeyAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.restKeyAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groupAdd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.groupAdd_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userresetcaptcha_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userresetcaptcha_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editviewcvsmapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editviewcvsmapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editlicense_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editlicense_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.authtest_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.authtest_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingadmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingadmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editp4config_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editp4config_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.customauthedit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.customauthedit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.addviewcvsmapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.addviewcvsmapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogressajaxresponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogressajaxresponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.schedulebackup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.schedulebackup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.changeadminpassword_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.changeadminpassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002dask_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002dask_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingconfirmdelete_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingconfirmdelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editupdatepolling_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editupdatepolling_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editserversettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editserversettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsvnconfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editsvnconfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewserversettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.viewserversettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editResources_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editResources_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.login_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.login_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backup_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.backup_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.securityadmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.securityadmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogress_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogress_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.gwt_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.gwt_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewurlmappings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.viewurlmappings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.contentadmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.contentadmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editusermappingrep_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editusermappingrep_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthedit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthedit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useredit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.useredit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userlogout_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userlogout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.sysinfo_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.sysinfo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsmtpconfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editsmtpconfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.edithgconfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.edithgconfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userview_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.userview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthconfirmdelete_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthconfirmdelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewFisheyeProject_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.viewFisheyeProject_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useradmin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.useradmin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useradd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.useradd_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editgitconfig_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editgitconfig_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editusermapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.editusermapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.customauthconfirmdelete_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.customauthconfirmdelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groupEdit_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.admin.groupEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editSettingsFakeAjaxResponse_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.editSettingsFakeAjaxResponse_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.showFavourites_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.showFavourites_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editmapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.editmapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editreviewsettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.editreviewsettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.changepassword_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.changepassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.showwatches_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.showwatches_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editemail_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.editemail_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.authormapping_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.authormapping_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editdisplaysettings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.profile.editdisplaysettings_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearch_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.search.quicksearch_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresultshtml_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresultshtml_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchcount_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchcount_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.searchresults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.search.searchresults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileView_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationAjaxResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationAjaxResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewContentsHtmlResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileViewContentsHtmlResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewSideBySideDiffHtmlResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileViewSideBySideDiffHtmlResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryRevisionsJson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryRevisionsJson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistory_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileHistory_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.diffPageJson_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.diffPageJson_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryContentsResp_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryContentsResp_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.jiraConnect_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.jiraConnect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.password_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.password_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.cruLicense_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.cruLicense_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.finished_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.finished_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.feLicense_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.feLicense_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.display_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.display_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.includeFishEye_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.includeFishEye_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.includeCrucible_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.setup.includeCrucible_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.dashboard_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.dashboard_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.user_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.user_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.repositoryUserList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.repositoryUserList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.anonHome_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.anonHome_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.userSummaryAjax_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.userSummaryAjax_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.globalUserList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.jsp.user.globalUserList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.admin.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.admin.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.api.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.api.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.profile.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.profile.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.cru.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.cru.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp._500_jsp</servlet-name>
+        <url-pattern>/500.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.x00_005fjson_jsp</servlet-name>
+        <url-pattern>/x00_json.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp._404_jsp</servlet-name>
+        <url-pattern>/404.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp._403_jsp</servlet-name>
+        <url-pattern>/403.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.admin_002dapi.index_jsp</servlet-name>
+        <url-pattern>/admin-api/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dgeneral_002dpage_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/atl-general-page-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.crucible_002dreport_002dtab_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/crucible-report-tab-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dadmin_002dpage_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/atl-admin-page-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.atl_002dpopup_002dpage_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/atl-popup-page-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dreport_002dtab_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/fisheye-report-tab-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002dpopup_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/fisheye-popup-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.decorators.fisheye_002duser_002dprofile_002dtab_002ddecorator_jsp</servlet-name>
+        <url-pattern>/WEB-INF/decorators/fisheye-user-profile-tab-decorator.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.projectList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/projectList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005ferror_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/passwordreset_error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.signup_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/signup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.nochangeset_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/nochangeset.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.repositoryList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/repositoryList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.projectLocLegend_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/projectLocLegend.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.acceptinvite_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/acceptinvite.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirlist_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/dirlist.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_005fsuccess_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/requestpasswordreset_success.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.passwordreset_005fsuccess_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/passwordreset_success.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activityStreamRSS_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/activityStreamRSS.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.mostActiveCommitters_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/mostActiveCommitters.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activitystream_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/activitystream.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changeset_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/changeset.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.activitystreamAjax_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/activitystreamAjax.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.login_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/login.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changelogdir_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/changelogdir.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.aboutBoxContents_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/aboutBoxContents.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changelogCalendar_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/changelogCalendar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.chart_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/chart.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.per_002dline_002dhistory_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/per-line-history.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changesettooltip_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/changesettooltip.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.changesetPageAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/changesetPageAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.rdiff_005fusage_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/rdiff_usage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.project_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/project.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.logout_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/logout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.login_005fjson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/login_json.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.reportList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/reportList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.userLocLegend_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/userLocLegend.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.requestpasswordreset_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/requestpasswordreset.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.annotate_005fnot_005ffound_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/annotate_not_found.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.empty_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/empty.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.changesetDetails_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/visualisation/changesetDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.visualisation_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/visualisation/visualisation.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.visualisation.branchFinderAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/visualisation/branchFinderAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/maintenance.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotRunning_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/repositoryNotRunning.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryDisabled_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/repositoryDisabled.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.repositoryNotSupported_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/repositoryNotSupported.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.maintenance_005fjson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/maintenance_json.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.common.exceededUserLimit_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/common/exceededUserLimit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin_002dapi.help_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin-api/help.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.noissue_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/jira/issue/noissue.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.error_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/jira/issue/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.tooltip_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/jira/issue/tooltip.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.jiraRedirectError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/jira/issue/jiraRedirectError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.jira.issue.inline_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/jira/issue/inline.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadSubTreeAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/dirtree/loadSubTreeAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.dirtree.loadFilePaneAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/dirtree/loadFilePaneAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dvis_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review-history-vis.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.crureviewtooltip_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/crureviewtooltip.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.reviewallcomments_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/reviewallcomments.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review-history.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review_002dhistory_002dwrapper_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review-history-wrapper.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.home.dashboard_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/home/dashboard.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.notcruuser_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/notcruuser.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.storeStickyPreferenceResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/storeStickyPreferenceResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.generalError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/generalError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.nopermission_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/nopermission.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.changeStateAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/changeStateAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.simpleAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/simpleAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxUserError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/ajaxUserError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.noreview_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/noreview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxRedirect_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/ajaxRedirect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.remoteRequestAjaxError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/remoteRequestAjaxError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.common.ajaxError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/common/ajaxError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.updatedJiraTime_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/jira/updatedJiraTime.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.getJiraResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/jira/getJiraResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.jiraTimeResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/jira/jiraTimeResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.jira.worked_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/jira/worked.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewObjectivesResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/update/updateReviewObjectivesResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateSnippetSyntaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/update/updateSnippetSyntaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewTitleResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/update/updateReviewTitleResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.update.updateReviewSummaryResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/update/updateReviewSummaryResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.rss.rssReviewFilter_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/rss/rssReviewFilter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.project.project_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/project/project.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.wiki.preview_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/wiki/preview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewLandingPage_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/createReviewLandingPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fchangeRevResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/edit_changeRevResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.iterablePatchesResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/iterablePatchesResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fbrowse_005fdirlist_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/create_selectRevisions_browse_dirlist.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.selectProjectDialogAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/selectProjectDialogAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.anchorPatchResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/anchorPatchResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.loadFullHistoryDropdown_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/loadFullHistoryDropdown.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fdetails_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/edit_details.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.create_005fselectRevisions_005fchangelogAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/create_selectRevisions_changelogAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.newReviewFromChangesetAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/newReviewFromChangesetAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.edit_005fselectRevisions_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/edit_selectRevisions.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.createReviewErrorPage_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/createReviewErrorPage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.changeDiffDropdown_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/changeDiffDropdown.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.findJiraForReviewResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/findJiraForReviewResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.create.ajax.constraintFinder_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/create/ajax/constraintFinder.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestGoodResult_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/database/dbTestGoodResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.database_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/database/database.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.dbTestBadResult_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/database/dbTestBadResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.database.editDatabase_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/database/editDatabase.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemeError_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/permission/permissionSchemeError.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPSAction_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/permission/editPSAction.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.permissionSchemes_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/permission/permissionSchemes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.createAgilePSAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/permission/createAgilePSAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.permission.editPermissionScheme_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/permission/editPermissionScheme.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.snippet.snippet_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/snippet/snippet.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectdelete_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/project/projectdelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.listprojects_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/project/listprojects.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.projectform_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/project/projectform.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.admin.project.preview_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/admin/project/preview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.commentSearchResults_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/commentSearchResults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.projectFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/projectFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/reviewFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleSourceFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/crucibleSourceFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.crucibleUserFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/crucibleUserFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.reviewerFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/reviewerFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.search.ajax.suggestReviewersResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/search/ajax/suggestReviewersResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.snippetReview_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/snippet/snippetReview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.createSnippet_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/snippet/createSnippet.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.snippet.printSnippet_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/snippet/printSnippet.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.replyCommentResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/replyCommentResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.displayFrxInnerDiv_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/displayFrxInnerDiv.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveNewFrxsResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/retrieveNewFrxsResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.commentIssueAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/commentIssueAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.reviewUpdatedResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/reviewUpdatedResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.redisplayFrxDiv_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/redisplayFrxDiv.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.review_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/review.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.worked_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/worked.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.frxCommentResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/frxCommentResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.resolveAllSubtasksAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/resolveAllSubtasksAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveCommentsResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/retrieveCommentsResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.getReviewerStatusJson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/getReviewerStatusJson.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.retrieveReviewDetailsResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/retrieveReviewDetailsResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.basicCommentAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/basicCommentAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.multiCommentIssueAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/multiCommentIssueAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.crucible.review.monolithic.generalCommentResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/crucible/review/monolithic/generalCommentResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.activeUserFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/ajax/activeUserFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.repositoryFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/ajax/repositoryFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.ajax.changelog.constraintsFinderResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/ajax/changelog/constraintsFinderResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.committer.committerSummaryAjax_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/committer/committerSummaryAjax.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.committer.committer_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/committer/committer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.license.licenseExceeded_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/license/licenseExceeded.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.addStarAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/star/addStarAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.removeStarAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/star/removeStarAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.setStarLabelAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/star/setStarLabelAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.star.getStarLabelAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/star/getStarLabelAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userpassword_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userpassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editDownloadPolicy_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editDownloadPolicy.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmdelete_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userconfirmdelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002ddone_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/shutdown-done.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userrename_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userrename.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsysadmins_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editsysadmins.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.migrateprogressajax_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/migrateprogressajax.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editcrusettings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editcrusettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userconfirmbulk_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userconfirmbulk.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.addusermapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/addusermapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editdefectclassifications_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editdefectclassifications.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editdefaultviewcvsmapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editdefaultviewcvsmapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groups_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/groups.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.pipelinejson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/pipelinejson.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.pluginsRescanned_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/pluginsRescanned.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usergroups_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/usergroups.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.sendtestemail_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/sendtestemail.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.restKeyAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/restKeyAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groupAdd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/groupAdd.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userresetcaptcha_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userresetcaptcha.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editviewcvsmapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editviewcvsmapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editlicense_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editlicense.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.error_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.authtest_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/authtest.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingadmin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/usermappingadmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editp4config_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editp4config.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.customauthedit_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/customauthedit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.addviewcvsmapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/addviewcvsmapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogressajaxresponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/backupprogressajaxresponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.schedulebackup_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/schedulebackup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.changeadminpassword_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/changeadminpassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.shutdown_002dask_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/shutdown-ask.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.usermappingconfirmdelete_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/usermappingconfirmdelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editupdatepolling_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editupdatepolling.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editserversettings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editserversettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsvnconfig_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editsvnconfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewserversettings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/viewserversettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editResources_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editResources.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.login_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/login.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backup_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/backup.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.securityadmin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/securityadmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.backupprogress_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/backupprogress.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.gwt_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/gwt.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewurlmappings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/viewurlmappings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.contentadmin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/contentadmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editusermappingrep_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editusermappingrep.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthedit_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/ajpauthedit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useredit_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/useredit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userlogout_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userlogout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.sysinfo_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/sysinfo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editsmtpconfig_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editsmtpconfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.edithgconfig_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/edithgconfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.userview_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/userview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.ajpauthconfirmdelete_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/ajpauthconfirmdelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.viewFisheyeProject_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/viewFisheyeProject.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useradmin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/useradmin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.useradd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/useradd.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editgitconfig_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editgitconfig.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.editusermapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/editusermapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.customauthconfirmdelete_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/customauthconfirmdelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.admin.groupEdit_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/admin/groupEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editSettingsFakeAjaxResponse_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/editSettingsFakeAjaxResponse.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.showFavourites_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/showFavourites.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editmapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/editmapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editreviewsettings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/editreviewsettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.changepassword_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/changepassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.showwatches_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/showwatches.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.error_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editemail_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/editemail.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.authormapping_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/authormapping.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.profile.editdisplaysettings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/profile/editdisplaysettings.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearch_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/search/quicksearch.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresultshtml_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/search/quicksearchresultshtml.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchresults_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/search/quicksearchresults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.quicksearchcount_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/search/quicksearchcount.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.search.searchresults_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/search/searchresults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileViewJsonAnnotationResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileView_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewJsonAnnotationAjaxResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileViewJsonAnnotationAjaxResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewContentsHtmlResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileViewContentsHtmlResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileViewSideBySideDiffHtmlResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileViewSideBySideDiffHtmlResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryRevisionsJson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileHistoryRevisionsJson.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistory_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileHistory.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.diffPageJson_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/diffPageJson.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.file.fileHistoryContentsResp_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/file/fileHistoryContentsResp.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.jiraConnect_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/jiraConnect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.password_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/password.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.cruLicense_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/cruLicense.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.finished_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/finished.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.feLicense_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/feLicense.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.display_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/display.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.includeFishEye_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/includeFishEye.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.setup.includeCrucible_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/setup/includeCrucible.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.dashboard_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/dashboard.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.user_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/user.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.repositoryUserList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/repositoryUserList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.anonHome_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/anonHome.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.userSummaryAjax_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/userSummaryAjax.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.jsp.user.globalUserList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/user/globalUserList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.admin.index_jsp</servlet-name>
+        <url-pattern>/admin/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.api.index_jsp</servlet-name>
+        <url-pattern>/api/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.profile.index_jsp</servlet-name>
+        <url-pattern>/profile/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.cru.index_jsp</servlet-name>
+        <url-pattern>/cru/index.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->
+
+
+    <servlet-mapping>
+        <servlet-name>servlet-module-container-servlet</servlet-name>
+        <url-pattern>/plugins/servlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MigrateDBProgressServlet</servlet-name>
+        <url-pattern>/setup/migrateDBProgressAjax</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RestApiServlet</servlet-name>
+        <url-pattern>/api/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>XmlRpcApiServlet</servlet-name>
+        <url-pattern>/api/xmlrpc</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ViewCvsRemapperServlet</servlet-name>
+        <url-pattern>/viewcvs/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActivityStreamServlet</servlet-name>
+        <url-pattern>/showactivitypage</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CurrentStaticRedirectServlet</servlet-name>
+        <url-pattern>/currentstatic/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/viewrep/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/browse/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/search/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/changelog/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/changelog-ajax/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/rdiff/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/chart/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/committer/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ActionDispatcher</servlet-name>
+        <url-pattern>/line-history/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>webwork</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>file-server</servlet-name>
+        <url-pattern>/download/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>gwtServlet</servlet-name>
+        <url-pattern>/gwt/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>error-servlet</servlet-name>
+        <url-pattern>/error/*</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500</location>
+    </error-page>
+
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
+
+    <servlet id="jsp">
+        <!-- defaults from webdefault.xml -->
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <init-param>
+            <param-name>logVerbosityLevel</param-name>
+            <param-value>DEBUG</param-value>
+        </init-param>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>xpoweredBy</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <!-- params overwriting webdefault.xml defaults -->
+        <init-param>
+            <!-- don't keep generated .jsp -> .java files -->
+            <param-name>keepgenerated</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <!-- keep compiled .java -> .class files -->
+            <param-name>saveBytecode</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <!-- defaults from webdefault.xml -->
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.jspf</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+        <url-pattern>*.xsp</url-pattern>
+        <url-pattern>*.JSP</url-pattern>
+        <url-pattern>*.JSPF</url-pattern>
+        <url-pattern>*.JSPX</url-pattern>
+        <url-pattern>*.XSP</url-pattern>
+    </servlet-mapping>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/crucible.tld</taglib-uri>
+            <taglib-location>/WEB-INF/crucible.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/crucible-review.tld</taglib-uri>
+            <taglib-location>/WEB-INF/crucible-review.tld</taglib-location>
+        </taglib>
+
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <scripting-invalid>false</scripting-invalid>
+        </jsp-property-group>
+    </jsp-config>
+
+</web-app>
+
+
+

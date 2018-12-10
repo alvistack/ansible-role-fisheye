@@ -44,47 +44,56 @@
     loop_var: "loop_var"
   tags: fisheye
 
-- name: prepare files
+- name: prepare directories
   file:
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-    state: "{{ item.state }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
   with_items:
-    - { dest: "{{ fisheye_catalina }}", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ fisheye_home }}", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ fisheye_home }}/var", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ fisheye_home }}/var/log", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755", state: "directory" }
+    - { dest: "/opt/atlassian/fisheye", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/fisheye", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/fisheye/var", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/fisheye/var/log", owner: "daemon", group: "daemon" }
   tags: fisheye
 
 - name: unarchive package
   shell: |
+    cd /opt/atlassian/fisheye
     ARCHIVE="`mktemp --suffix=.zip`"
-    curl -sL {{ fisheye_url }} > $ARCHIVE
-    TMP_DIR="`mktemp -d`" && unzip -qq $ARCHIVE -x -d $TMP_DIR && rsync -av $TMP_DIR/*/ {{ fisheye_catalina }} && rm -rf $TMP_DIR
-    chown -Rf {{ fisheye_owner }}:{{ fisheye_group }} {{ fisheye_catalina }}
+    curl -skL {{ fisheye_download_url }} > $ARCHIVE
+    TMP_DIR="`mktemp -d`" && unzip -qq $ARCHIVE -x -d $TMP_DIR && rsync -aq $TMP_DIR/*/ . && rm -rf $TMP_DIR
     rm -rf $ARCHIVE
+    cd /opt/atlassian/fisheye/lib
+    rm -rf *mysql*.jar
+    curl -skL {{ mysql_jdbc_download_url }} | tar zxf - --strip-components 1 --wildcards "mysql*/*mysql*.jar"
+    cd /opt/atlassian/fisheye/lib
+    rm -rf *postgresql*.jar
+    curl -skL {{ postgresql_jdbc_download_url }} -O
+    chown -Rf daemon:daemon /opt/atlassian/fisheye
   args:
-    creates: "{{ fisheye_catalina }}/bin/start.sh"
+    creates: "/opt/atlassian/fisheye/bin/start.sh"
   tags: fisheye
 
 - name: copy templates
   template:
-    src: "{{ item.src }}"
+    src: "./templates{{ item.dest }}.j2"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   with_items:
-    - { src: "etc/init.d/fisheye.j2", dest: "/etc/init.d/fisheye", owner: "root", group: "root", mode: "0755" }
-    - { src: "opt/atlassian/fisheye/bin/fisheyectl.sh.j2", dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755" }
-    - { src: "opt/atlassian/fisheye/bin/start.sh.j2", dest: "{{ fisheye_catalina }}/bin/start.sh", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0755" }
-    - { src: "opt/atlassian/fisheye/config.xml.j2", dest: "{{ fisheye_catalina }}/config.xml", owner: "{{ fisheye_owner }}", group: "{{ fisheye_group }}", mode: "0644" }
+    - { dest: "/etc/init.d/fisheye", mode: "0755" }
+    - { dest: "/opt/atlassian/fisheye/bin/fisheyectl.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/fisheye/bin/start.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/fisheye/content/WEB-INF/web.xml", owner: "daemon", group: "daemon" }
   tags: fisheye
 
 - name: enable service
   service:
-    name: "fisheye"
-    enabled: "yes"
+    name: fisheye
+    enabled: yes
+  changed_when: false
+  ignore_errors: yes
   tags: fisheye

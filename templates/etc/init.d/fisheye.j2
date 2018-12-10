@@ -13,11 +13,11 @@
 #               Provide commands for manually starting and stopping Fisheye.
 ### END INIT INFO
 
-FISHEYE_OWNER={{ fisheye_owner }}
-FISHEYE_GROUP={{ fisheye_group }}
-FISHEYE_HOME={{ fisheye_home }}
-FISHEYE_CATALINA={{ fisheye_catalina }}
-FISHEYE_CATALINA_PID={{ fisheye_home }}/var/catalina.pid
+FISHEYE_OWNER=${FISHEYE_OWNER:-daemon}
+FISHEYE_GROUP=${FISHEYE_GROUP:-daemon}
+FISHEYE_HOME=${FISHEYE_HOME:-/var/atlassian/application-data/fisheye}
+FISHEYE_CATALINA=${FISHEYE_CATALINA:-/opt/atlassian/fisheye}
+FISHEYE_CATALINA_PID=${FISHEYE_CATALINA}/var/catalina.pid
 
 start() {
     echo "Starting Fisheye: "
@@ -69,14 +69,17 @@ status() {
 
 case "$1" in
     start)
-        start ${@:2}
+        shift
+        start $@
         ;;
     stop)
-        stop ${@:2}
+        shift
+        stop $@
         ;;
     restart)
-        stop ${@:2}
-        start ${@:2}
+        shift
+        stop $@
+        start $@
         ;;
     status)
         status
