@@ -7,9 +7,9 @@ After=syslog.target
 [Service]
 User=daemon
 Group=daemon
-ExecStart=/etc/init.d/fisheye start
-ExecStop=/etc/init.d/fisheye stop
-PIDFile=/opt/atlassian/fisheye/work/catalina.pid
+ExecStart=/opt/atlassian/fisheye/bin/start.sh
+ExecStop=/opt/atlassian/fisheye/bin/stop.sh
+PIDFile=/var/atlassian/application-data/fisheye/var/catalina.pid
 
 [Install]
 WantedBy=multi-user.target
