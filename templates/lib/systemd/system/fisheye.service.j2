@@ -9,8 +9,8 @@ ExecStart=/opt/atlassian/fisheye/bin/start.sh
 ExecStop=/opt/atlassian/fisheye/bin/stop.sh
 PIDFile=/var/atlassian/application-data/fisheye/var/catalina.pid
 Type=forking
-User=daemon
-Group=daemon
+User=fisheye
+Group=fisheye
 
 [Install]
 WantedBy=multi-user.target
