@@ -47,7 +47,6 @@
 - name: groupadd
   group:
     name: "fisheye"
-    gid: "68060"
     system: true
     state: "present"
   tags: fisheye
@@ -56,7 +55,6 @@
   user:
     name: "fisheye"
     group: "fisheye"
-    uid: "68060"
     home: "/var/atlassian/application-data/fisheye"
     shell: "/usr/sbin/nologin"
     system: true
