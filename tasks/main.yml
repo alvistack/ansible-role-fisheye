@@ -95,7 +95,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf fisheye:fisheye /opt/atlassian/fisheye
   args:
-    executable: /bin/bash
+    executable: "/bin/bash"
     creates: "/opt/atlassian/fisheye/bin/start.sh"
   tags: fisheye
 
