@@ -31,7 +31,7 @@ fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 # Session timeout.
 fisheye_session_timeout: "300"
 
-# URL for download Fisheye archive.
+# URL for download archives.
 fisheye_download_url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.6.1.zip"
 mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
 postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
