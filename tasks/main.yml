@@ -81,6 +81,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/fisheye
     ARCHIVE="`mktemp --suffix=.zip`"
     curl -skL {{ fisheye_download_url }} > $ARCHIVE
