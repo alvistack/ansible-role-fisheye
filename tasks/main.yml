@@ -81,6 +81,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/fisheye
     ARCHIVE="`mktemp --suffix=.zip`"
     curl -skL {{ fisheye_download_url }} > $ARCHIVE
@@ -94,6 +95,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf fisheye:fisheye /opt/atlassian/fisheye
   args:
+    executable: "/bin/bash"
     creates: "/opt/atlassian/fisheye/bin/start.sh"
   tags: fisheye
 
