@@ -122,7 +122,7 @@
     - { dest: "/opt/atlassian/fisheye/bin/fisheyectl.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
     - { dest: "/opt/atlassian/fisheye/bin/start.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
   notify:
-    - systemctl daemon-reload
+    - fisheye | systemctl daemon-reload
   tags: fisheye
 
 - name: prepare files
