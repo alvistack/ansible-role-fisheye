@@ -148,6 +148,10 @@
     state: present
   tags: fisheye
 
+- name: flush handlers
+  meta: flush_handlers
+  tags: fisheye
+
 - name: enable service
   service:
     name: fisheye
