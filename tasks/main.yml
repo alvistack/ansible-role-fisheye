@@ -148,11 +148,12 @@
   tags: fisheye
 
 - name: patch /opt/atlassian/fisheye/content/WEB-INF/web.xml
-  lineinfile:
+  xml:
     path: "/opt/atlassian/fisheye/content/WEB-INF/web.xml"
-    regexp: "^        <session-timeout>[0-9]*</session-timeout>"
-    line: "        <session-timeout>{{ fisheye_session_timeout | int }}</session-timeout>"
-    insertbefore: "^    </session-config>"
+    xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
+    namespaces:
+      ns: "http://java.sun.com/xml/ns/javaee"
+    value: "{{ fisheye_session_timeout | int }}"
     state: present
   notify:
     - fisheye | systemctl daemon-reload
