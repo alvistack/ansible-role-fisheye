@@ -8,6 +8,7 @@
   - Always use `become: true` with molecule, especially for vagrant
   - Abstract archive download checksum with multiple version support
   - Improve service restart implementation
+  - Patch `session-timeout` with Ansible xml module
 
 ## 3.0.0 - 2019-05-20
 
