@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _fisheye_download:
+  4.7.1:
+    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.1.zip"
+    dest: "/tmp/fisheye-4.7.1.zip"
+    checksum: "sha1:087e85106ee53d44214e0c196cccbe508e36656b"
   4.7.0:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.0.zip"
     dest: "/tmp/fisheye-4.7.0.zip"
