@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Fisheye version.
-fisheye_version: "4.7.0"
+fisheye_version: "4.7.1"
 
 # Fisheye download details.
 fisheye_download: "{{ _fisheye_download[fisheye_version] }}"
