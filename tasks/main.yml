@@ -81,6 +81,9 @@
     - { dest: "/var/atlassian/application-data/fisheye", owner: "fisheye", group: "fisheye" }
     - { dest: "/var/atlassian/application-data/fisheye/var", owner: "fisheye", group: "fisheye" }
     - { dest: "/var/atlassian/application-data/fisheye/var/log", owner: "fisheye", group: "fisheye" }
+    - { dest: "{{ fisheye_download.dest | dirname }}" }
+    - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
+    - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
   tags: fisheye
 
 - name: download archive
