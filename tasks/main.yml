@@ -169,10 +169,8 @@
 
 - name: enable service
   service:
-    name: "{{ item.name }}"
+    name: "fisheye"
     enabled: true
-  loop:
-    - { name: "fisheye" }
   changed_when: false
   ignore_errors: true
   tags: fisheye

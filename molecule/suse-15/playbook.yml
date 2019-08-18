@@ -32,8 +32,8 @@
   tasks:
     - name: start service
       service:
-        name: fisheye
-        state: started
+        name: "fisheye"
+        state: "started"
       changed_when: false
       ignore_errors: true
 
