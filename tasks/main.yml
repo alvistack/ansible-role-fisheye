@@ -111,6 +111,7 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf fisheye:fisheye /opt/atlassian/fisheye
+    chmod 0755 /opt/atlassian/fisheye /opt/atlassian/fisheye/bin
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
