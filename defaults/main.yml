@@ -41,7 +41,7 @@ fisheye_catalina_connector_proxyname: ~
 fisheye_catalina_connector_proxyport: ~
 fisheye_catalina_connector_scheme: "http"
 fisheye_catalina_connector_secure: "false"
-fisheye_catalina_context_path: ~
+fisheye_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
 fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
