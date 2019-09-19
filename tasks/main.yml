@@ -50,16 +50,16 @@
 
 - name: groupadd
   group:
-    name: "fisheye"
+    name: "{{ fisheye_group }}"
     system: true
     state: "present"
   tags: fisheye
 
 - name: useradd
   user:
-    name: "fisheye"
-    group: "fisheye"
-    home: "/var/atlassian/application-data/fisheye"
+    name: "{{ fisheye_owner }}"
+    group: "{{ fisheye_group }}"
+    home: "{{ fisheye_home }}"
     shell: "/usr/sbin/nologin"
     system: true
     create_home: false
@@ -76,14 +76,24 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/opt/atlassian/fisheye", owner: "fisheye", group: "fisheye" }
-    - { dest: "/opt/atlassian/fisheye/bin", owner: "fisheye", group: "fisheye" }
-    - { dest: "/var/atlassian/application-data/fisheye", owner: "fisheye", group: "fisheye" }
-    - { dest: "/var/atlassian/application-data/fisheye/var", owner: "fisheye", group: "fisheye" }
-    - { dest: "/var/atlassian/application-data/fisheye/var/log", owner: "fisheye", group: "fisheye" }
     - { dest: "{{ fisheye_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
+    - dest: "{{ fisheye_catalina }}"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_catalina }}/bin"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_home }}"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_home }}/var"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_home }}/var/log"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
   tags: fisheye
 
 - name: download archive
@@ -102,16 +112,24 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    cd /opt/atlassian/fisheye
-    TMP_DIR="`mktemp -d`" && unzip -qq -d $TMP_DIR {{ fisheye_download.dest }} && rsync -aq --delete $TMP_DIR/*/ . && rm -rf $TMP_DIR
-    cd /opt/atlassian/fisheye/lib
+    cd {{ fisheye_catalina }}
+    TMP_DIR="`mktemp -d`" \
+      && unzip -qq -d $TMP_DIR {{ fisheye_download.dest }} \
+      && rsync -aq --delete $TMP_DIR/*/ . \
+      && rm -rf $TMP_DIR
+    cd {{ fisheye_catalina }}/lib
     rm -rf *mysql*.jar
-    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} && mv $TMP_DIR/*/*mysql*-bin.jar . && rm -rf $TMP_DIR
-    cd /opt/atlassian/fisheye/lib
+    TMP_DIR="`mktemp -d`" \
+      && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} \
+      && mv $TMP_DIR/*/*mysql*-bin.jar . \
+      && rm -rf $TMP_DIR
+    cd {{ fisheye_catalina }}/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf fisheye:fisheye /opt/atlassian/fisheye
-    chmod 0755 /opt/atlassian/fisheye /opt/atlassian/fisheye/bin
+    chown -Rf fisheye:fisheye {{ fisheye_catalina }}
+    chmod 0755 \
+      {{ fisheye_catalina }} \
+      {{ fisheye_catalina }}/bin
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
@@ -130,8 +148,16 @@
   loop:
     - { dest: "/etc/init.d/fisheye", mode: "0755" }
     - { dest: "/lib/systemd/system/fisheye.service" }
-    - { dest: "/opt/atlassian/fisheye/bin/fisheyectl.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
-    - { dest: "/opt/atlassian/fisheye/bin/start.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
+    - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
+      src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0755"
+    - dest: "{{ fisheye_catalina }}/bin/start.sh"
+      src: "./templates/opt/atlassian/fisheye/bin/start.sh.j2"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart
@@ -147,13 +173,19 @@
   loop:
     - { dest: "/etc/init.d/fisheye", mode: "0755" }
     - { dest: "/lib/systemd/system/fisheye.service" }
-    - { dest: "/opt/atlassian/fisheye/bin/fisheyectl.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
-    - { dest: "/opt/atlassian/fisheye/bin/start.sh", owner: "fisheye", group: "fisheye", mode: "0755" }
+    - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0755"
+    - dest: "{{ fisheye_catalina }}/bin/start.sh"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0755"
   tags: fisheye
 
-- name: patch /opt/atlassian/fisheye/content/WEB-INF/web.xml
+- name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
   xml:
-    path: "/opt/atlassian/fisheye/content/WEB-INF/web.xml"
+    path: "{{ fisheye_catalina }}/content/WEB-INF/web.xml"
     xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
     namespaces:
       ns: "http://java.sun.com/xml/ns/javaee"

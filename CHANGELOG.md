@@ -4,6 +4,9 @@
 
 ### Major Changes
 
+  - Abstract `fisheye_owner` and `fisheye_group` as variable
+  - Abstract `fisheye_heom` and `fisheye_catalina` as variable
+
 ## 3.4.0 - 2019-09-18
 
 ### Major Changes

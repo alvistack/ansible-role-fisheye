@@ -13,10 +13,10 @@
 #               Provide commands for manually starting and stopping Fisheye.
 ### END INIT INFO
 
-FISHEYE_OWNER=${FISHEYE_OWNER:-fisheye}
-FISHEYE_GROUP=${FISHEYE_GROUP:-fisheye}
-FISHEYE_HOME=${FISHEYE_HOME:-/var/atlassian/application-data/fisheye}
-FISHEYE_CATALINA=${FISHEYE_CATALINA:-/opt/atlassian/fisheye}
+FISHEYE_OWNER=${FISHEYE_OWNER:-{{ fisheye_owner }}}
+FISHEYE_GROUP=${FISHEYE_GROUP:-{{ fisheye_group }}}
+FISHEYE_HOME=${FISHEYE_HOME:-{{ fisheye_home }}}
+FISHEYE_CATALINA=${FISHEYE_CATALINA:-{{ fisheye_catalina }}}
 FISHEYE_CATALINA_PID=${FISHEYE_HOME}/var/catalina.pid
 
 start() {

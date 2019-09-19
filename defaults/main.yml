@@ -32,8 +32,18 @@ postgresql_jdbc_version: "42.2.8"
 # PostgreSQL JDBC download details.
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
+# Owner and group for Fisheye.
+fisheye_owner: "fisheye"
+fisheye_group: "fisheye"
+
+# Fisheye home directory.
+fisheye_home: "/var/atlassian/application-data/fisheye"
+
+# Fisheye installation directory.
+fisheye_catalina: "/opt/atlassian/fisheye"
+
 # JVM minimal and maximum memory usage.
-fisheye_jvm_minimum_memory: "512m"
+fisheye_jvm_minimum_memory: "1024m"
 fisheye_jvm_maximum_memory: "1024m"
 
 # Proxy and context path setup.
@@ -44,7 +54,11 @@ fisheye_catalina_connector_secure: "false"
 fisheye_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
-fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+fisheye_jvm_support_recommended_args: >-
+  -Datlassian.plugins.enable.wait=300
+  -XX:+UnlockExperimentalVMOptions
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
-fisheye_session_timeout: "120"
+fisheye_session_timeout: "300"
