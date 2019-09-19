@@ -2,8 +2,8 @@
 
 # {{ ansible_managed }}
 
-FISHEYE_HOME="${FISHEYE_HOME:-"/var/atlassian/application-data/fisheye"}"
-FISHEYE_CATALINA="${FISHEYE_CATALINA:-"/opt/atlassian/fisheye"}"
+FISHEYE_HOME="${FISHEYE_HOME:-"{{ fisheye_home }}"}"
+FISHEYE_CATALINA="${FISHEYE_CATALINA:-"{{ fisheye_catalina }}"}"
 CATALINA_PID=$FISHEYE_HOME/var/catalina.pid
 CATALINA_LOG=$FISHEYE_HOME/var/log/catalina.out
 

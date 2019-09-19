@@ -5,12 +5,12 @@ Description=Atlassian Fisheye
 After=syslog.target network.target
 
 [Service]
-ExecStart=/opt/atlassian/fisheye/bin/start.sh
-ExecStop=/opt/atlassian/fisheye/bin/stop.sh
-PIDFile=/var/atlassian/application-data/fisheye/var/catalina.pid
 Type=forking
 User={{ fisheye_owner }}
 Group={{ fisheye_group }}
+ExecStart={{ fisheye_catalina }}/bin/start.sh
+ExecStop={{ fisheye_catalina }}/bin/stop.sh
+PIDFile={{ fisheye_home }}/var/catalina.pid
 
 [Install]
 WantedBy=multi-user.target

@@ -36,6 +36,12 @@ postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version]
 fisheye_owner: "fisheye"
 fisheye_group: "fisheye"
 
+# Fisheye home directory.
+fisheye_home: "/var/atlassian/application-data/fisheye"
+
+# Fisheye installation directory.
+fisheye_catalina: "/opt/atlassian/fisheye"
+
 # JVM minimal and maximum memory usage.
 fisheye_jvm_minimum_memory: "512m"
 fisheye_jvm_maximum_memory: "1024m"
