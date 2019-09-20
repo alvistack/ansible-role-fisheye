@@ -5,6 +5,7 @@
 ### Major Changes
 
   - Default with Python 3
+  - Revamp molecule test with vagrant
   - Abstract `fisheye_owner` and `fisheye_group` as variable
   - Abstract `fisheye_heom` and `fisheye_catalina` as variable
 
