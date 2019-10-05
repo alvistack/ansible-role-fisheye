@@ -4,6 +4,7 @@
 
 ### Major Changes
 
+  - Support openSUSE Leap 15.1
   - Default with Python 3
   - Revamp molecule test with vagrant
   - Abstract `fisheye_owner` and `fisheye_group` as variable
