@@ -101,6 +101,7 @@
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     checksum: "{{ item.checksum }}"
+    timeout: 300
   loop:
     - "{{ fisheye_download }}"
     - "{{ mysql_jdbc_download }}"
