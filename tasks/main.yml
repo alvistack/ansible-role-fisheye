@@ -127,7 +127,7 @@
     cd {{ fisheye_catalina }}/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf fisheye:fisheye {{ fisheye_catalina }}
+    chown -Rf {{ fisheye_owner }}:{{ fisheye_group }} {{ fisheye_catalina }}
     chmod 0755 \
       {{ fisheye_catalina }} \
       {{ fisheye_catalina }}/bin
