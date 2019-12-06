@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _fisheye_download:
+  4.8.0:
+    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.0.zip"
+    dest: "/var/cache/ansible/fisheye-4.8.0.zip"
+    checksum: "sha1:79f58a4d672c48a768cf797fda1192379dd7704f"
   4.7.3:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "/var/cache/ansible/fisheye-4.7.3.zip"
@@ -31,14 +35,6 @@ _fisheye_download:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.0.zip"
     dest: "/var/cache/ansible/fisheye-4.7.0.zip"
     checksum: "sha1:0c90bf7423aabd43096df8e849586360d05de32b"
-  4.6.1:
-    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.6.1.zip"
-    dest: "/var/cache/ansible/fisheye-4.6.1.zip"
-    checksum: "sha1:9a3057af08704437a991e6a2a439fec164a80c48"
-  4.6.0:
-    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.6.0.zip"
-    dest: "/var/cache/ansible/fisheye-4.6.0.zip"
-    checksum: "sha1:6b62a055938a1d5b03071b2eeed494dd8071c494"
 
 _mysql_jdbc_download:
   5.1.48:
