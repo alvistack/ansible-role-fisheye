@@ -113,10 +113,11 @@
 - name: unarchive package
   shell: |
     set -o pipefail
+    rm -rf {{ fisheye_catalina }} && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
     TMP_DIR="`mktemp -d`" \
       && unzip -qq -d $TMP_DIR {{ fisheye_download.dest }} \
-      && rsync -aq --delete $TMP_DIR/*/ . \
+      && cp -rfT $TMP_DIR/* . \
       && rm -rf $TMP_DIR
     cd {{ fisheye_catalina }}/lib
     rm -rf *mysql*.jar
