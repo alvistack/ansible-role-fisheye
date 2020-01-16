@@ -113,7 +113,8 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    rm -rf {{ fisheye_catalina }} && mkdir -p {{ fisheye_catalina }}
+    rm -rf {{ fisheye_catalina }} \
+      && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
     TMP_DIR="`mktemp -d`" \
       && unzip -qq -d $TMP_DIR {{ fisheye_download.dest }} \
