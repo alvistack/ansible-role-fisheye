@@ -97,6 +97,8 @@
   tags: fisheye
 
 - name: download archive
+  vars:
+    ansible_python_interpreter: "python3"
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
@@ -187,6 +189,8 @@
   tags: fisheye
 
 - name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
+  vars:
+    ansible_python_interpreter: "python3"
   xml:
     path: "{{ fisheye_catalina }}/content/WEB-INF/web.xml"
     xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
