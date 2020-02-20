@@ -203,14 +203,6 @@
     - fisheye | systemctl restart
   tags: fisheye
 
-- name: enable service
-  service:
-    name: "fisheye"
-    enabled: true
-  changed_when: false
-  ignore_errors: true
-  tags: fisheye
-
 - name: flush handlers
   meta: flush_handlers
   tags: fisheye
@@ -219,6 +211,7 @@
   service:
     name: "fisheye"
     state: "started"
+    enabled: true
   changed_when: false
   ignore_errors: true
   tags: fisheye
