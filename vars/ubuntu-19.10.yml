@@ -15,4 +15,6 @@
 # limitations under the License.
 
 _apt:
+  - { state: "latest", name: "systemd" }
+  - { state: "latest", name: "tar" }
   - { state: "latest", name: "unzip" }

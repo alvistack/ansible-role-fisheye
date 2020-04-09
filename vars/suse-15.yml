@@ -15,4 +15,8 @@
 # limitations under the License.
 
 _zypper:
+  - { state: "latest", name: "insserv-compat" }
+  - { state: "latest", name: "systemd" }
+  - { state: "latest", name: "systemd-sysvinit" }
+  - { state: "latest", name: "tar" }
   - { state: "latest", name: "unzip" }
