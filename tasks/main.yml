@@ -74,7 +74,6 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
     - { dest: "{{ fisheye_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
@@ -151,7 +150,6 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/etc/init.d/fisheye", mode: "0755" }
     - { dest: "/lib/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
@@ -176,7 +174,6 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/etc/init.d/fisheye", mode: "0755" }
     - { dest: "/lib/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
