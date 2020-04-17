@@ -20,7 +20,7 @@
   changed_when: false
   ignore_errors: true
 
-- name: fisheye | systemctl restart
+- name: fisheye | systemctl restart fisheye
   service:
     name: "fisheye"
     state: "restarted"
