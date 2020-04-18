@@ -204,7 +204,7 @@
   meta: flush_handlers
   tags: fisheye
 
-- name: start service
+- name: systemctl start fisheye
   service:
     name: "fisheye"
     state: "started"
