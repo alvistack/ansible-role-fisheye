@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _fisheye_download:
+  4.8.3:
+    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.3.zip"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.3.zip"
+    checksum: "sha1:9dd398914917f94cd0dd8c362a385b83591d5490"
   4.8.2:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.2.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.2.zip"
@@ -23,10 +27,6 @@ _fisheye_download:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.1.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.1.zip"
     checksum: "sha1:8c4d18eb755b56b7cdf150df72bfe0533243dea9"
-  4.8.0:
-    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.0.zip"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.0.zip"
-    checksum: "sha1:79f58a4d672c48a768cf797fda1192379dd7704f"
   4.7.3:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.3.zip"
@@ -39,10 +39,6 @@ _fisheye_download:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.1.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.1.zip"
     checksum: "sha1:087e85106ee53d44214e0c196cccbe508e36656b"
-  4.7.0:
-    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.0.zip"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.0.zip"
-    checksum: "sha1:0c90bf7423aabd43096df8e849586360d05de32b"
 
 _mysql_jdbc_download:
   5.1.49:
@@ -51,7 +47,7 @@ _mysql_jdbc_download:
     checksum: "sha1:ed8f8574585edfb630b0b6ee4ebf6f6847795c0f"
 
 _postgresql_jdbc_download:
-  42.2.12:
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.12.jar"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.12.jar"
-    checksum: "sha1:1ed5b5f16a67f312a50d420e8bcb7d30b40b033d"
+  42.2.14:
+    url: "https://jdbc.postgresql.org/download/postgresql-42.2.14.jar"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.14.jar"
+    checksum: "sha1:45fa6eef266aa80024ef2ab3688d9faa38c642e5"
