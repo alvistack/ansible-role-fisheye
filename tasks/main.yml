@@ -102,6 +102,7 @@
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     checksum: "{{ item.checksum }}"
+    mode: "{{ item.mode | default('0644') }}"
     timeout: 300
   loop:
     - "{{ fisheye_download }}"
