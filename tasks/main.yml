@@ -141,7 +141,7 @@
   when: get_url_result is changed
   notify:
     - fisheye | systemctl daemon-reload
-    - fisheye | systemctl restart fisheye
+    - fisheye | systemctl restart fisheye.service
   tags: fisheye
 
 - name: copy templates
@@ -165,7 +165,7 @@
       mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
-    - fisheye | systemctl restart fisheye
+    - fisheye | systemctl restart fisheye.service
   tags: fisheye
 
 - name: prepare files
@@ -199,12 +199,12 @@
     state: present
   notify:
     - fisheye | systemctl daemon-reload
-    - fisheye | systemctl restart fisheye
+    - fisheye | systemctl restart fisheye.service
   tags: fisheye
 
-- name: systemctl start fisheye
+- name: systemctl start fisheye.service
   service:
-    name: "fisheye"
+    name: "fisheye.service"
     state: "started"
     enabled: true
   changed_when: false
