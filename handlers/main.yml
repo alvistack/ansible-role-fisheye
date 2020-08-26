@@ -20,9 +20,9 @@
   changed_when: false
   ignore_errors: true
 
-- name: fisheye | systemctl restart fisheye
+- name: fisheye | systemctl restart fisheye.service
   service:
-    name: "fisheye"
+    name: "fisheye.service"
     state: "restarted"
     enabled: true
   loop: "{{ ansible_play_hosts }}"
