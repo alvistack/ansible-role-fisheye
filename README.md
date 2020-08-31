@@ -1,7 +1,7 @@
 # Ansible Role for Fisheye
 
 [![Travis](https://img.shields.io/travis/com/alvistack/ansible-role-fisheye.svg)](https://travis-ci.com/alvistack/ansible-role-fisheye)
-[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-fisheye.svg)](https://github.com/alvistack/ansible-role-fisheye)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-fisheye.svg)](https://github.com/alvistack/ansible-role-fisheye/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-fisheye.svg)](https://github.com/alvistack/ansible-role-fisheye/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.fisheye-blue.svg)](https://galaxy.ansible.com/alvistack/fisheye)
 
