@@ -151,7 +151,6 @@
     owner: "{{ item.owner | default('root') }}"
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
-    backup: true
   loop:
     - { dest: "/lib/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
