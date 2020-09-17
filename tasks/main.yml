@@ -185,6 +185,9 @@
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
+  notify:
+    - fisheye | systemctl daemon-reload
+    - fisheye | systemctl restart fisheye.service
   tags: fisheye
 
 - name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
