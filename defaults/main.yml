@@ -43,8 +43,8 @@ fisheye_home: "/var/atlassian/application-data/fisheye"
 fisheye_catalina: "/opt/atlassian/fisheye"
 
 # JVM minimal and maximum memory usage.
-fisheye_jvm_minimum_memory: "1024m"
-fisheye_jvm_maximum_memory: "1024m"
+fisheye_jvm_minimum_memory: "2048m"
+fisheye_jvm_maximum_memory: "2048m"
 
 # Proxy and context path setup.
 fisheye_catalina_connector_proxyname: ~
