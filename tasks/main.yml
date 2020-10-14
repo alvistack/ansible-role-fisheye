@@ -16,7 +16,6 @@
 
 - name: include default variables
   include_vars: "../vars/main.yml"
-  tags: fisheye
 
 - name: include release specific variables
   include_vars: "{{ lookup('first_found', _params) }}"
@@ -31,7 +30,6 @@
       paths:
         - "../vars"
   ignore_errors: true
-  tags: fisheye
 
 - name: include release specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -46,14 +44,12 @@
       paths:
         - "."
   ignore_errors: true
-  tags: fisheye
 
 - name: groupadd
   group:
     name: "{{ fisheye_group }}"
     system: true
     state: "present"
-  tags: fisheye
 
 - name: useradd
   user:
@@ -64,7 +60,6 @@
     system: true
     create_home: false
     state: "present"
-  tags: fisheye
 
 - name: prepare directories
   file:
@@ -94,7 +89,6 @@
     - dest: "{{ fisheye_home }}/var/log"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
-  tags: fisheye
 
 - name: download archive
   vars:
@@ -111,7 +105,6 @@
     - "{{ postgresql_jdbc_download }}"
   register: get_url_result
   until: get_url_result is succeeded
-  tags: fisheye
 
 - name: unarchive package
   shell: |
@@ -142,7 +135,6 @@
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
-  tags: fisheye
 
 - name: copy templates
   template:
@@ -166,7 +158,6 @@
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
-  tags: fisheye
 
 - name: prepare files
   file:
@@ -188,7 +179,6 @@
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
-  tags: fisheye
 
 - name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
   vars:
@@ -203,7 +193,9 @@
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
-  tags: fisheye
+
+- name: flush handlers
+  meta: flush_handlers
 
 - name: systemctl start fisheye.service
   service:
@@ -212,8 +204,3 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-  tags: fisheye
-
-- name: flush handlers
-  meta: flush_handlers
-  tags: fisheye
