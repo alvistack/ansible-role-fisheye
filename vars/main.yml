@@ -15,39 +15,39 @@
 # limitations under the License.
 
 _fisheye_download:
-  4.8.4:
+  "4.8.4":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.4.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.4.zip"
     checksum: "sha1:aecae8711d4eac94b194b69fb027374fa16b9319"
-  4.8.3:
+  "4.8.3":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.3.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.3.zip"
     checksum: "sha1:9dd398914917f94cd0dd8c362a385b83591d5490"
-  4.8.2:
+  "4.8.2":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.2.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.2.zip"
     checksum: "sha1:23279c4892d78593e02100e6287d970298099fbf"
-  4.7.3:
+  "4.7.3":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.3.zip"
     checksum: "sha1:ca3cd44d21027fcef62307d5da449ad682103f7a"
-  4.7.2:
+  "4.7.2":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.2.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.2.zip"
     checksum: "sha1:5a0c9660dfeb6247d40d12ca74eb00eb422250f5"
-  4.7.1:
+  "4.7.1":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.1.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.1.zip"
     checksum: "sha1:087e85106ee53d44214e0c196cccbe508e36656b"
 
 _mysql_jdbc_download:
-  5.1.49:
+  "5.1.49":
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/mysql-connector-java-5.1.49.tar.gz"
     checksum: "sha1:ed8f8574585edfb630b0b6ee4ebf6f6847795c0f"
 
 _postgresql_jdbc_download:
-  42.2.17:
+  "42.2.17":
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.17.jar"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.17.jar"
     checksum: "sha1:b3a214aa89d0fe146f216c2f4a3a4dfbe35d63bf"
