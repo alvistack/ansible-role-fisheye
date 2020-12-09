@@ -108,7 +108,7 @@
 
 - name: unarchive package
   shell: |
-    set -o pipefail
+    set -euo pipefail
     rm -rf {{ fisheye_catalina }} \
       && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
