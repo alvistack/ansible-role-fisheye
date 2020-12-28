@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _fisheye_download:
+  "4.8.5":
+    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.5.zip"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.5.zip"
+    checksum: "sha1:db97573957b86b161930af272213d7166bc5f725"
   "4.8.4":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.4.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.4.zip"
@@ -23,10 +27,6 @@ _fisheye_download:
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.3.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.3.zip"
     checksum: "sha1:9dd398914917f94cd0dd8c362a385b83591d5490"
-  "4.8.2":
-    url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.2.zip"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.8.2.zip"
-    checksum: "sha1:23279c4892d78593e02100e6287d970298099fbf"
   "4.7.3":
     url: "https://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/fisheye-4.7.3.zip"
