@@ -89,6 +89,7 @@
     - dest: "{{ fisheye_home }}/var/log"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
+  register: file_result
 
 - name: download archive
   vars:
@@ -103,12 +104,14 @@
     - "{{ fisheye_download }}"
     - "{{ mysql_jdbc_download }}"
     - "{{ postgresql_jdbc_download }}"
+  when: file_result is changed
   register: get_url_result
   until: get_url_result is succeeded
 
 - name: unarchive package
   shell: |
     set -euo pipefail
+    exec &> >(tee -a {{ fisheye_download.dest }}.log)
     rm -rf {{ fisheye_catalina }} \
       && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
@@ -131,7 +134,7 @@
       {{ fisheye_catalina }}/bin
   args:
     executable: "/bin/bash"
-  when: get_url_result is changed
+    creates: "{{ fisheye_download.dest }}.log"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
