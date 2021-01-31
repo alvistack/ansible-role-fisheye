@@ -192,7 +192,7 @@
     namespaces:
       ns: "http://java.sun.com/xml/ns/javaee"
     value: "{{ fisheye_session_timeout | int }}"
-    state: present
+    state: "present"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
