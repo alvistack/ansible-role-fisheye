@@ -18,36 +18,36 @@ _fisheye_download:
   "4.8.6":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.6.zip"
     dest: "/var/cache/ansible/2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b/fisheye-4.8.6.zip"
-    checksum: "sha256:2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b"
+    sha256sum: "2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b"
   "4.8.5":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.5.zip"
     dest: "/var/cache/ansible/ae04578c6a0b34cd4da5a1aa390a61a88d919d8d87ac3dbb11ce1ff89c1f565f/fisheye-4.8.5.zip"
-    checksum: "sha256:ae04578c6a0b34cd4da5a1aa390a61a88d919d8d87ac3dbb11ce1ff89c1f565f"
+    sha256sum: "ae04578c6a0b34cd4da5a1aa390a61a88d919d8d87ac3dbb11ce1ff89c1f565f"
   "4.8.4":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.4.zip"
     dest: "/var/cache/ansible/c0aef539452cd446509d8f3907f1d829666aea3b28c36cd3a5001db5677f1281/fisheye-4.8.4.zip"
-    checksum: "sha256:c0aef539452cd446509d8f3907f1d829666aea3b28c36cd3a5001db5677f1281"
+    sha256sum: "c0aef539452cd446509d8f3907f1d829666aea3b28c36cd3a5001db5677f1281"
   "4.7.3":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "/var/cache/ansible/b3b540826de7f44be2477fa6e838bed7665a741e7642ac46ca2f228aa193f8aa/fisheye-4.7.3.zip"
-    checksum: "sha256:b3b540826de7f44be2477fa6e838bed7665a741e7642ac46ca2f228aa193f8aa"
+    sha256sum: "b3b540826de7f44be2477fa6e838bed7665a741e7642ac46ca2f228aa193f8aa"
   "4.7.2":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.2.zip"
     dest: "/var/cache/ansible/39de372dba495383d793fe627297522420b36b268361bdacfd3f511fe24dbab7/fisheye-4.7.2.zip"
-    checksum: "sha256:39de372dba495383d793fe627297522420b36b268361bdacfd3f511fe24dbab7"
+    sha256sum: "39de372dba495383d793fe627297522420b36b268361bdacfd3f511fe24dbab7"
   "4.7.1":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.1.zip"
     dest: "/var/cache/ansible/bdeb1421cc25fc0f91cc3360c41ccd423adfa10441f513fb8d9b6d88e6644231/fisheye-4.7.1.zip"
-    checksum: "sha256:bdeb1421cc25fc0f91cc3360c41ccd423adfa10441f513fb8d9b6d88e6644231"
+    sha256sum: "bdeb1421cc25fc0f91cc3360c41ccd423adfa10441f513fb8d9b6d88e6644231"
 
 _mysql_jdbc_download:
   "5.1.49":
     url: "http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz"
     dest: "/var/cache/ansible/25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca/mysql-connector-java-5.1.49.tar.gz"
-    checksum: "sha256:25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca"
+    sha256sum: "25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca"
 
 _postgresql_jdbc_download:
   "42.2.19":
     url: "http://jdbc.postgresql.org/download/postgresql-42.2.19.jar"
     dest: "/var/cache/ansible/232747fa0924d88a26dfa42b8128b6fa1140802d804125891596e8ca5f291322/postgresql-42.2.19.jar"
-    checksum: "sha256:232747fa0924d88a26dfa42b8128b6fa1140802d804125891596e8ca5f291322"
+    sha256sum: "232747fa0924d88a26dfa42b8128b6fa1140802d804125891596e8ca5f291322"
