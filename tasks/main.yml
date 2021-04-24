@@ -187,7 +187,6 @@
     value: "{{ fisheye_session_timeout | int }}"
     state: "present"
   notify:
-    - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: flush handlers
