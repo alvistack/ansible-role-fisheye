@@ -75,9 +75,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - { dest: "/lib/systemd/system/fisheye.service.d", state: "absent" }
-    - { dest: "/usr/local/lib/systemd/system" }
-    - { dest: "/usr/local/lib/systemd/system/fisheye.service.d" }
+    - { dest: "/lib/systemd/system" }
     - dest: "{{ fisheye_catalina }}"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
@@ -147,7 +145,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/usr/local/lib/systemd/system/fisheye.service" }
+    - { dest: "/lib/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
       owner: "{{ fisheye_owner }}"
@@ -170,8 +168,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/lib/systemd/system/fisheye.service", state: "absent" }
-    - { dest: "/usr/local/lib/systemd/system/fisheye.service" }
+    - { dest: "/lib/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
