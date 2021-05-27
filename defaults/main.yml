@@ -14,8 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Fisheye release.
+fisheye_release: "4.8"
+
 # Fisheye version.
-fisheye_version: "4.8.6"
+fisheye_version: "{{ _fisheye_version[fisheye_release] }}"
 
 # Fisheye download details.
 fisheye_download: "{{ _fisheye_download[fisheye_version] }}"
