@@ -97,11 +97,11 @@
     set -euo pipefail
     TMP_DIR="$(mktemp -d)" \
       && cd $TMP_DIR \
-      && mkdir -p ./{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > ./{{ item.dest }} \
-      && echo -n "{{ item.sha256sum }} ./{{ item.dest }}" | sha256sum -c - \
+      && mkdir -p .{{ item.dest | dirname }} \
+      && curl -skL -m 300 {{ item.url }} > .{{ item.dest }} \
+      && echo -n "{{ item.checksum }} .{{ item.dest }}" | sha256sum -c - \
       && mkdir -p {{ item.dest | dirname }} \
-      && mv ./{{ item.dest }} {{ item.dest }} \
+      && mv .{{ item.dest }} {{ item.dest }} \
       && rm -rf $TMP_DIR
   args:
     executable: "/bin/bash"
@@ -115,7 +115,8 @@
 - name: unarchive package
   shell: |
     set -euo pipefail
-    exec &> >(tee -a {{ fisheye_download.dest }}.log)
+    mkdir -p /var/log/ansible
+    exec &> >(tee -a /var/log/ansible/{{ fisheye_download.checksum }}.log)
     rm -rf {{ fisheye_catalina }} \
       && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
@@ -132,7 +133,7 @@
       {{ fisheye_catalina }}/bin
   args:
     executable: "/bin/bash"
-    creates: "{{ fisheye_download.dest }}.log"
+    creates: "/var/log/ansible/{{ fisheye_download.checksum }}.log"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
