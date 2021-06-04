@@ -14,6 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_postgresql_jdbc_version:
+  "42.2": "42.2.20"
+
+_postgresql_jdbc_download:
+  "42.2.20":
+    url: "http://jdbc.postgresql.org/download/postgresql-42.2.20.jar"
+    dest: "/tmp/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
+    checksum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
+
 _fisheye_version:
   "4.8": "4.8.6"
   "4.7": "4.7.3"
@@ -43,9 +52,3 @@ _fisheye_download:
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.1.zip"
     dest: "/tmp/bdeb1421cc25fc0f91cc3360c41ccd423adfa10441f513fb8d9b6d88e6644231/fisheye-4.7.1.zip"
     checksum: "bdeb1421cc25fc0f91cc3360c41ccd423adfa10441f513fb8d9b6d88e6644231"
-
-_postgresql_jdbc_download:
-  "42.2.20":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.2.20.jar"
-    dest: "/tmp/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
-    checksum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
