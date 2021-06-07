@@ -97,6 +97,8 @@
 - name: download archive
   shell: |
     set -euxo pipefail
+    mkdir -p /var/log/ansible
+    exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
     TMP_DIR="$(mktemp -d)" \
       && cd $TMP_DIR \
       && mkdir -p .{{ item.dest | dirname }} \
@@ -107,7 +109,7 @@
       && rm -rf $TMP_DIR
   args:
     executable: "/bin/bash"
-    creates: "{{ item.dest | dirname }}"
+    creates: "/var/log/ansible/{{ item.checksum }}-get_url.log"
   loop:
     - "{{ fisheye_download }}"
     - "{{ postgresql_jdbc_download }}"
@@ -118,7 +120,7 @@
   shell: |
     set -euxo pipefail
     mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ fisheye_download.checksum }}.log)
+    exec &> >(tee -a /var/log/ansible/{{ fisheye_download.checksum }}-unarchive.log)
     rm -rf {{ fisheye_catalina }} \
       && mkdir -p {{ fisheye_catalina }}
     cd {{ fisheye_catalina }}
@@ -135,7 +137,7 @@
       {{ fisheye_catalina }}/bin
   args:
     executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ fisheye_download.checksum }}.log"
+    creates: "/var/log/ansible/{{ fisheye_download.checksum }}-unarchive.log"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
