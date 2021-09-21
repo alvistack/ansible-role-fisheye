@@ -1,5 +1,7 @@
 # Ansible Role for Fisheye
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-fisheye/master)](https://gitlab.com/alvistack/ansible-role-fisheye/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-fisheye.svg)](https://github.com/alvistack/ansible-role-fisheye/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-fisheye.svg)](https://github.com/alvistack/ansible-role-fisheye/blob/master/LICENSE)
