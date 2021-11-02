@@ -15,19 +15,23 @@
 # limitations under the License.
 
 _postgresql_jdbc_version:
-  "42.3": "42.3.0"
+  "42.3": "42.3.1"
 
 _postgresql_jdbc_download:
-  "42.3.0":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.3.0.jar"
-    dest: "/var/cache/ansible/bd3b88a62d92f36b26c254203460d5f0463da15c0e964a0c7197c83f3c689ccd/postgresql-42.3.0.jar"
-    checksum: "bd3b88a62d92f36b26c254203460d5f0463da15c0e964a0c7197c83f3c689ccd"
+  "42.3.1":
+    url: "http://jdbc.postgresql.org/download/postgresql-42.3.1.jar"
+    dest: "/var/cache/ansible/8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4/postgresql-42.3.1.jar"
+    checksum: "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
 
 _fisheye_version:
-  "4.8": "4.8.7"
+  "4.8": "4.8.8"
   "4.7": "4.7.3"
 
 _fisheye_download:
+  "4.8.8":
+    url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.8.zip"
+    dest: "/var/cache/ansible/b100e880c380efd7a93b3c1098284cf614b05b81990d6f6df9f6355816b4294e/fisheye-4.8.8.zip"
+    checksum: "b100e880c380efd7a93b3c1098284cf614b05b81990d6f6df9f6355816b4294e"
   "4.8.7":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.7.zip"
     dest: "/var/cache/ansible/bfbe9b3cbbaba20c1dc5aa3cb2e30d35b599c0424dd826e3f18764312ce908a1/fisheye-4.8.7.zip"
@@ -36,10 +40,6 @@ _fisheye_download:
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.6.zip"
     dest: "/var/cache/ansible/2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b/fisheye-4.8.6.zip"
     checksum: "2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b"
-  "4.8.5":
-    url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.5.zip"
-    dest: "/var/cache/ansible/ae04578c6a0b34cd4da5a1aa390a61a88d919d8d87ac3dbb11ce1ff89c1f565f/fisheye-4.8.5.zip"
-    checksum: "ae04578c6a0b34cd4da5a1aa390a61a88d919d8d87ac3dbb11ce1ff89c1f565f"
   "4.7.3":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "/var/cache/ansible/b3b540826de7f44be2477fa6e838bed7665a741e7642ac46ca2f228aa193f8aa/fisheye-4.7.3.zip"
