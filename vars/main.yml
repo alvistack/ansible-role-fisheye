@@ -24,10 +24,14 @@ _postgresql_jdbc_download:
     checksum: "eed0604f512ba44817954de99a07e2a5470aa4bfcb481d4e63a93e0ff0e0aede"
 
 _fisheye_version:
-  "4.8": "4.8.8"
+  "4.8": "4.8.9"
   "4.7": "4.7.3"
 
 _fisheye_download:
+  "4.8.9":
+    url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.9.zip"
+    dest: "/var/cache/ansible/e357c2a031c9a205a24656b3fb3a69c5d9d24c765568ef1e7a7b9bfc6d86a388/fisheye-4.8.9.zip"
+    checksum: "e357c2a031c9a205a24656b3fb3a69c5d9d24c765568ef1e7a7b9bfc6d86a388"
   "4.8.8":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.8.zip"
     dest: "/var/cache/ansible/b100e880c380efd7a93b3c1098284cf614b05b81990d6f6df9f6355816b4294e/fisheye-4.8.8.zip"
@@ -36,10 +40,6 @@ _fisheye_download:
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.7.zip"
     dest: "/var/cache/ansible/bfbe9b3cbbaba20c1dc5aa3cb2e30d35b599c0424dd826e3f18764312ce908a1/fisheye-4.8.7.zip"
     checksum: "bfbe9b3cbbaba20c1dc5aa3cb2e30d35b599c0424dd826e3f18764312ce908a1"
-  "4.8.6":
-    url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.8.6.zip"
-    dest: "/var/cache/ansible/2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b/fisheye-4.8.6.zip"
-    checksum: "2d5dc44cf1f31384b661586bd12f4cecf397fb1f8f3ce3aa5f9c06deb6da786b"
   "4.7.3":
     url: "http://product-downloads.atlassian.com/software/fisheye/downloads/fisheye-4.7.3.zip"
     dest: "/var/cache/ansible/b3b540826de7f44be2477fa6e838bed7665a741e7642ac46ca2f228aa193f8aa/fisheye-4.7.3.zip"
