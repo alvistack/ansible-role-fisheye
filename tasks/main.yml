@@ -36,7 +36,7 @@
       skip: true
 
 - name: include release specific tasks
-  include_tasks: "{{ _loop_var }}"
+  ansible.builtin.include_tasks: "{{ _loop_var }}"
   loop: "{{ query('first_found', _params) }}"
   loop_control:
     loop_var: _loop_var
@@ -62,9 +62,9 @@
 - name: useradd
   ansible.builtin.user:
     name: "{{ fisheye_owner }}"
-    ansible.builtin.group: "{{ fisheye_group }}"
+    group: "{{ fisheye_group }}"
     home: "{{ fisheye_home }}"
-    ansible.builtin.shell: "/usr/sbin/nologin"
+    shell: "/usr/sbin/nologin"
     system: true
     create_home: false
     state: "present"
@@ -73,26 +73,26 @@
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/systemd/system" }
     - dest: "{{ fisheye_catalina }}"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_catalina }}/bin"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}/var"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}/var/log"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
 
 - name: download archive
   ansible.builtin.shell: |
@@ -147,19 +147,19 @@
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
       mode: "0755"
     - dest: "{{ fisheye_catalina }}/bin/start.sh"
       src: "./templates/opt/atlassian/fisheye/bin/start.sh.j2"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
@@ -169,18 +169,18 @@
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    ansible.builtin.group: "{{ item.group | default('root') }}"
+    group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
       mode: "0755"
     - dest: "{{ fisheye_catalina }}/bin/start.sh"
       owner: "{{ fisheye_owner }}"
-      ansible.builtin.group: "{{ fisheye_group }}"
+      group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
