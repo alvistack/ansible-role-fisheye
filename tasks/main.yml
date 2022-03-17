@@ -15,10 +15,10 @@
 # limitations under the License.
 
 - name: include default variables
-  include_vars: "../vars/main.yml"
+  ansible.builtin.include_vars: "../vars/main.yml"
 
 - name: include release specific variables
-  include_vars: "{{ _loop_var }}"
+  ansible.builtin.include_vars: "{{ _loop_var }}"
   loop: "{{ query('first_found', _params) }}"
   loop_control:
     loop_var: _loop_var
@@ -54,48 +54,48 @@
       skip: true
 
 - name: groupadd
-  group:
+  ansible.builtin.group:
     name: "{{ fisheye_group }}"
     system: true
     state: "present"
 
 - name: useradd
-  user:
+  ansible.builtin.user:
     name: "{{ fisheye_owner }}"
-    group: "{{ fisheye_group }}"
+    ansible.builtin.group: "{{ fisheye_group }}"
     home: "{{ fisheye_home }}"
-    shell: "/usr/sbin/nologin"
+    ansible.builtin.shell: "/usr/sbin/nologin"
     system: true
     create_home: false
     state: "present"
 
 - name: prepare directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/systemd/system" }
     - dest: "{{ fisheye_catalina }}"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_catalina }}/bin"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}/var"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_home }}/var/log"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
 
 - name: download archive
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     mkdir -p /var/log/ansible
     exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
@@ -117,7 +117,7 @@
   until: result is succeeded
 
 - name: unarchive package
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     mkdir -p /var/log/ansible
     exec &> >(tee -a /var/log/ansible/{{ fisheye_download.checksum }}-unarchive.log)
@@ -143,44 +143,44 @@
     - fisheye | systemctl restart fisheye.service
 
 - name: copy templates
-  template:
+  ansible.builtin.template:
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
       mode: "0755"
     - dest: "{{ fisheye_catalina }}/bin/start.sh"
       src: "./templates/opt/atlassian/fisheye/bin/start.sh.j2"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: prepare files
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
       mode: "0755"
     - dest: "{{ fisheye_catalina }}/bin/start.sh"
       owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
+      ansible.builtin.group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
     - fisheye | systemctl daemon-reload
@@ -200,10 +200,10 @@
     - fisheye | systemctl restart fisheye.service
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: systemctl start fisheye.service
-  service:
+  ansible.builtin.service:
     name: "fisheye.service"
     state: "started"
     enabled: true
