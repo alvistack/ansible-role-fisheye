@@ -4,8 +4,12 @@
 
 FISHEYE_HOME="{{ fisheye_home }}"
 FISHEYE_CATALINA="{{ fisheye_catalina }}"
+
 CATALINA_PID=$FISHEYE_HOME/var/catalina.pid
 CATALINA_LOG=$FISHEYE_HOME/var/log/catalina.out
+
+mkdir -p $(dirname $CATALINA_PID)
+mkdir -p $(dirname $CATALINA_LOG)
 
 case "`uname`" in
   Darwin*) if [ -z "$JAVA_HOME" ] ; then
@@ -22,7 +26,7 @@ if [ -z "$FISHEYE_CATALINA" ]; then
 fi
 
 if [ ! -f "$FISHEYE_CATALINA/fisheyeboot.jar" ] ; then
-    echo "Error: Could not find $FISHEYE_CATALINA/fisheyeboot.jar"  
+    echo "Error: Could not find $FISHEYE_CATALINA/fisheyeboot.jar"
     exit 1
 fi
 
