@@ -69,79 +69,6 @@
     create_home: false
     state: "present"
 
-- name: prepare directories
-  ansible.builtin.file:
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0755') }}"
-    state: "{{ item.state | default('directory') }}"
-  loop:
-    - { dest: "/etc/systemd/system" }
-    - dest: "{{ fisheye_catalina }}"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-    - dest: "{{ fisheye_catalina }}/bin"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-    - dest: "{{ fisheye_home }}"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-    - dest: "{{ fisheye_home }}/var"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-    - dest: "{{ fisheye_home }}/var/log"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-
-- name: download archive
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
-    TMP_DIR="$(mktemp -d)" \
-      && cd $TMP_DIR \
-      && mkdir -p .{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > .{{ item.dest }} \
-      && echo -n "{{ item.checksum }} .{{ item.dest }}" | sha256sum -c - \
-      && mkdir -p {{ item.dest | dirname }} \
-      && mv .{{ item.dest }} {{ item.dest }} \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ item.checksum }}-get_url.log"
-  loop:
-    - "{{ fisheye_download }}"
-    - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
-
-- name: unarchive package
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ fisheye_download.checksum }}-unarchive.log)
-    rm -rf {{ fisheye_catalina }} \
-      && mkdir -p {{ fisheye_catalina }}
-    cd {{ fisheye_catalina }}
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ fisheye_download.dest }} \
-      && cp -rfT $TMP_DIR/* . \
-      && rm -rf $TMP_DIR
-    cd {{ fisheye_catalina }}/lib
-    rm -rf *postgresql*.jar
-    cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf {{ fisheye_owner }}:{{ fisheye_group }} {{ fisheye_catalina }}
-    chmod 0755 \
-      {{ fisheye_catalina }} \
-      {{ fisheye_catalina }}/bin
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ fisheye_download.checksum }}-unarchive.log"
-  notify:
-    - fisheye | systemctl daemon-reload
-    - fisheye | systemctl restart fisheye.service
-
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
@@ -150,19 +77,12 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
-    - dest: "{{ fisheye_catalina }}/bin/start.sh"
-      src: "./templates/opt/atlassian/fisheye/bin/start.sh.j2"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-      mode: "0755"
   notify:
-    - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: prepare files
@@ -173,17 +93,11 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/etc/systemd/system/fisheye.service" }
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
-    - dest: "{{ fisheye_catalina }}/bin/start.sh"
-      owner: "{{ fisheye_owner }}"
-      group: "{{ fisheye_group }}"
-      mode: "0755"
   notify:
-    - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
