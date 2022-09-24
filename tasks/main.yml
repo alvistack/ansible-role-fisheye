@@ -100,7 +100,7 @@
   notify:
     - fisheye | systemctl restart fisheye.service
 
-- name: patch {{ fisheye_catalina }}/content/WEB-INF/web.xml
+- name: patch /opt/atlassian/fisheye/content/WEB-INF/web.xml
   vars:
     ansible_python_interpreter: "python3"
   xml:
