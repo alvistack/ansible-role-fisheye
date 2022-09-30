@@ -103,7 +103,7 @@
 - name: patch /opt/atlassian/fisheye/content/WEB-INF/web.xml
   vars:
     ansible_python_interpreter: "python3"
-  xml:
+  community.general.xml:
     path: "{{ fisheye_catalina }}/content/WEB-INF/web.xml"
     xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
     namespaces:
