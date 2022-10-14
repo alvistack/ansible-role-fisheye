@@ -76,6 +76,22 @@
     owner: "{{ item.owner | default('root') }}"
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
+    force: false
+  loop:
+    - dest: "{{ fisheye_home }}/config.xml"
+      src: "./templates/var/atlassian/application-data/fisheye/config.xml.j2"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+  notify:
+    - fisheye | systemctl restart fisheye.service
+
+- name: copy templates
+  ansible.builtin.template:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   loop:
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
@@ -93,10 +109,41 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
+    - dest: "{{ fisheye_home }}/config.xml"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
+  notify:
+    - fisheye | systemctl restart fisheye.service
+
+- name: patch /var/atlassian/application-data/fisheye/config.xml
+  vars:
+    ansible_python_interpreter: "python3"
+  community.general.xml:
+    path: "{{ fisheye_home }}/config.xml"
+    value: "{{ item.value }}"
+    xpath: "{{ item.value | ternary(item.xpath, item.xpath + '/@' + item.attribute) }}"
+    attribute: "{{ item.value | ternary(item.attribute, None) }}"
+    state: "{{ item.value | ternary('present', 'absent') }}"
+  loop:
+    - xpath: "/config/web-server/http"
+      attribute: "bind"
+      value: ":{{ fisheye_catalina_connector_port }}"
+    - xpath: "/config/web-server/http"
+      attribute: "proxy-scheme"
+      value: "{{ fisheye_catalina_connector_scheme }}"
+    - xpath: "/config/web-server/http"
+      attribute: "proxy-host"
+      value: "{{ fisheye_catalina_connector_proxyname }}"
+    - xpath: "/config/web-server/http"
+      attribute: "proxy-port"
+      value: "{{ fisheye_catalina_connector_proxyport }}"
+    - xpath: "/config/web-server"
+      attribute: "context"
+      value: "{{ fisheye_catalina_context_path }}"
   notify:
     - fisheye | systemctl restart fisheye.service
 
@@ -108,7 +155,7 @@
     xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
     namespaces:
       ns: "http://java.sun.com/xml/ns/javaee"
-    value: "{{ fisheye_session_timeout | int }}"
+    value: "{{ fisheye_autologin_cookie_age | int }}"
     state: "present"
   notify:
     - fisheye | systemctl restart fisheye.service

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- {{ ansible_managed }} -->
+<config control-bind="127.0.0.1:8059" version="1.0">
+    <web-server>
+        <http bind=":8060"/>
+    </web-server>
+    <security allow-anon="true" allow-cru-anon="true">
+        <built-in>
+            <signup enabled="true"/>
+        </built-in>
+        <admins>
+            <system-admins/>
+        </admins>
+        <avatar>
+            <disabled/>
+        </avatar>
+    </security>
+    <repository-defaults>
+        <linker/>
+        <allow/>
+        <tarball enabled="false" maxFileCount="0"/>
+        <security allow-anon="true"/>
+        <text-indexer enabled="true"/>
+        <watches enabled="true"/>
+        <commit-message-syntax syntax="plain"/>
+        <changeset-discussions enabled="true"/>
+        <show-checkout-url>true</show-checkout-url>
+    </repository-defaults>
+    <check-for-updates/>
+    <snippet/>
+</config>
