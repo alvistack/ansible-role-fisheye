@@ -33,12 +33,14 @@ fisheye_catalina: "/opt/atlassian/fisheye"
 # JVM minimal and maximum memory usage.
 fisheye_jvm_minimum_memory: "2048m"
 fisheye_jvm_maximum_memory: "2048m"
+fisheye_jvm_reserved_code_cache_size: "512m"
 
 # Proxy and context path setup.
+fisheye_catalina_connector_port: "8060"
+fisheye_catalina_connector_scheme: ~
+fisheye_catalina_connector_secure: ~
 fisheye_catalina_connector_proxyname: ~
 fisheye_catalina_connector_proxyport: ~
-fisheye_catalina_connector_scheme: "http"
-fisheye_catalina_connector_secure: "false"
 fisheye_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
@@ -49,4 +51,4 @@ fisheye_jvm_support_recommended_args: >-
   -XX:MaxRAMFraction=1
 
 # Session timeout (in minutes).
-fisheye_session_timeout: "120"
+fisheye_autologin_cookie_age: "120"
