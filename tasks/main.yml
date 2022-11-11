@@ -69,6 +69,32 @@
     create_home: false
     state: "present"
 
+- name: prepare directories
+  ansible.builtin.file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
+  loop:
+    - dest: "{{ fisheye_catalina }}"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0700"
+    - dest: "{{ fisheye_catalina }}/bin"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_home }}"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+      mode: "0750"
+    - dest: "{{ fisheye_home }}/var"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+    - dest: "{{ fisheye_home }}/var/log"
+      owner: "{{ fisheye_owner }}"
+      group: "{{ fisheye_group }}"
+
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
