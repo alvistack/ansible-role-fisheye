@@ -77,6 +77,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
+    - dest: "/etc/systemd/system"
     - dest: "{{ fisheye_catalina }}"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
@@ -119,12 +120,14 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
+    - dest: "/etc/systemd/system/fisheye.service"
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
       src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
+    - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: prepare files
@@ -135,6 +138,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
+    - dest: "/etc/systemd/system/fisheye.service"
     - dest: "{{ fisheye_home }}/config.xml"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
@@ -143,6 +147,7 @@
       group: "{{ fisheye_group }}"
       mode: "0755"
   notify:
+    - fisheye | systemctl daemon-reload
     - fisheye | systemctl restart fisheye.service
 
 - name: patch /var/atlassian/application-data/fisheye/config.xml
