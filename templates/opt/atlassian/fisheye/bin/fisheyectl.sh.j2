@@ -57,7 +57,7 @@ FISHEYE_OPTS="-XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 $FISHEYE_OPT
 FISHEYE_OPTS="-Xms{{ fisheye_jvm_minimum_memory }} -Xmx{{ fisheye_jvm_maximum_memory }} -XX:ReservedCodeCacheSize={{ fisheye_jvm_reserved_code_cache_size }} -XX:MaxPermSize=256m -Xss512k $FISHEYE_OPTS"
 FISHEYE_OPTS="{{ fisheye_jvm_support_recommended_args }} $FISHEYE_OPTS"
 
-FISHEYE_CMD="$JAVACMD $FISHEYE_OPTS -Dfisheye.library.path=$FISHEYE_LIBRARY_PATH -Dfisheye.inst=$FISHEYE_HOME -Djava.awt.headless=true -Djava.endorsed.dirs=$FISHEYE_CATALINA/lib/endorsed -jar $FISHEYE_CATALINA/fisheyeboot.jar"
+FISHEYE_CMD="$JAVACMD $FISHEYE_OPTS -Dfisheye.library.path=$FISHEYE_LIBRARY_PATH -Dfisheye.inst=$FISHEYE_HOME -Djava.awt.headless=true -Djava.endorsed.dirs=$FISHEYE_CATALINA/lib/endorsed -Djava.security.auth.login.config= -jar $FISHEYE_CATALINA/fisheyeboot.jar"
 
 case "$1" in
     run)
