@@ -46,6 +46,7 @@ fisheye_catalina_context_path: ~
 # Atlassian Support recommended JVM arguments.
 fisheye_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
+  -XX:+IgnoreUnrecognizedVMOptions
   -XX:+UnlockExperimentalVMOptions
   -XX:+UseCGroupMemoryLimitForHeap
   -XX:MaxRAMFraction=1
