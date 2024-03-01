@@ -159,6 +159,7 @@
     xpath: "{{ item.value | ternary(item.xpath, item.xpath + '/@' + item.attribute) }}"
     attribute: "{{ item.value | ternary(item.attribute, None) }}"
     state: "{{ item.value | ternary('present', 'absent') }}"
+    pretty_print: true
   loop:
     - xpath: "/config/web-server/http"
       attribute: "bind"
@@ -187,6 +188,7 @@
     namespaces:
       ns: "http://java.sun.com/xml/ns/javaee"
     value: "{{ item.value }}"
+    pretty_print: true
     state: "present"
   loop:
     - xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
