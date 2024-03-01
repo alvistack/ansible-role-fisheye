@@ -183,11 +183,18 @@
     ansible_python_interpreter: "python3"
   community.general.xml:
     path: "{{ fisheye_catalina }}/content/WEB-INF/web.xml"
-    xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
+    xpath: "{{ item.xpath }}"
     namespaces:
       ns: "http://java.sun.com/xml/ns/javaee"
-    value: "{{ fisheye_autologin_cookie_age | int }}"
+    value: "{{ item.value }}"
     state: "present"
+  loop:
+    - xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
+      value: "{{ fisheye_session_timeout | int }}"
+    - xpath: "/ns:web-app/ns:session-config/ns:tracking-mode"
+      value: "COOKIE"
+    - xpath: "/ns:web-app/ns:session-config/ns:cookie-config/ns:max-age"
+      value: "{{ (fisheye_session_timeout | int) * 60 }}"
   notify:
     - fisheye | systemctl restart fisheye.service
 
