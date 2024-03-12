@@ -21,28 +21,27 @@ fisheye_release: "4.8"
 fisheye_version: "{{ _fisheye_version[fisheye_release] }}"
 
 # Owner and group for Fisheye.
-fisheye_owner: "fisheye"
-fisheye_group: "fisheye"
+fisheye_owner: fisheye
+fisheye_group: fisheye
 
 # Fisheye home directory.
-fisheye_home: "/var/atlassian/application-data/fisheye"
+fisheye_home: /var/atlassian/application-data/fisheye
 
 # Fisheye installation directory.
-fisheye_catalina: "/opt/atlassian/fisheye"
+fisheye_catalina: /opt/atlassian/fisheye
 
 # JVM minimal and maximum memory usage.
-fisheye_jvm_minimum_memory: "2048m"
-fisheye_jvm_maximum_memory: "2048m"
-fisheye_jvm_reserved_code_cache_size: "512m"
+fisheye_jvm_minimum_memory: 2048m
+fisheye_jvm_maximum_memory: 2048m
+fisheye_jvm_reserved_code_cache_size: 512m
 
 # Proxy and context path setup.
 fisheye_catalina_connector_port: "8060"
-fisheye_catalina_connector_scheme: ~
-fisheye_catalina_connector_secure: ~
-fisheye_catalina_connector_proxyname: ~
-fisheye_catalina_connector_proxyport: ~
-fisheye_catalina_context_path: ~
-
+fisheye_catalina_connector_scheme:
+fisheye_catalina_connector_secure:
+fisheye_catalina_connector_proxyname:
+fisheye_catalina_connector_proxyport:
+fisheye_catalina_context_path:
 # Atlassian Support recommended JVM arguments.
 fisheye_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300

@@ -1,5 +1,4 @@
 ---
-
 # Copyright 2024 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,7 @@
 # limitations under the License.
 
 - name: include default variables
-  ansible.builtin.include_vars: "../vars/main.yml"
+  ansible.builtin.include_vars: ../vars/main.yml
 
 - name: include release specific variables
   ansible.builtin.include_vars: "{{ _loop_var }}"
@@ -32,7 +31,7 @@
         - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
         - "{{ ansible_os_family | lower }}.yml"
       paths:
-        - "../vars"
+        - ../vars
       skip: true
 
 - name: include release specific tasks
@@ -50,24 +49,24 @@
         - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
         - "{{ ansible_os_family | lower }}.yml"
       paths:
-        - "."
+        - .
       skip: true
 
 - name: groupadd
   ansible.builtin.group:
     name: "{{ fisheye_group }}"
     system: true
-    state: "present"
+    state: present
 
 - name: useradd
   ansible.builtin.user:
     name: "{{ fisheye_owner }}"
     group: "{{ fisheye_group }}"
     home: "{{ fisheye_home }}"
-    shell: "/bin/bash"
+    shell: /bin/bash
     system: true
     create_home: false
-    state: "present"
+    state: present
 
 - name: prepare directories
   ansible.builtin.file:
@@ -77,7 +76,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - dest: "/etc/systemd/system"
+    - dest: /etc/systemd/system
     - dest: "{{ fisheye_catalina }}"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
@@ -106,7 +105,7 @@
     force: false
   loop:
     - dest: "{{ fisheye_home }}/config.xml"
-      src: "./templates/var/atlassian/application-data/fisheye/config.xml.j2"
+      src: ./templates/var/atlassian/application-data/fisheye/config.xml.j2
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
   notify:
@@ -120,9 +119,9 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - dest: "/etc/systemd/system/fisheye.service"
+    - dest: /etc/systemd/system/fisheye.service
     - dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh"
-      src: "./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2"
+      src: ./templates/opt/atlassian/fisheye/bin/fisheyectl.sh.j2
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
       mode: "0755"
@@ -138,7 +137,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - dest: "/etc/systemd/system/fisheye.service"
+    - dest: /etc/systemd/system/fisheye.service
     - dest: "{{ fisheye_home }}/config.xml"
       owner: "{{ fisheye_owner }}"
       group: "{{ fisheye_group }}"
@@ -152,7 +151,7 @@
 
 - name: patch /var/atlassian/application-data/fisheye/config.xml
   vars:
-    ansible_python_interpreter: "python3"
+    ansible_python_interpreter: python3
   community.general.xml:
     path: "{{ fisheye_home }}/config.xml"
     value: "{{ item.value }}"
@@ -161,41 +160,41 @@
     state: "{{ item.value | ternary('present', 'absent') }}"
     pretty_print: true
   loop:
-    - xpath: "/config/web-server/http"
-      attribute: "bind"
-      value: ":{{ fisheye_catalina_connector_port }}"
-    - xpath: "/config/web-server/http"
-      attribute: "proxy-scheme"
+    - xpath: /config/web-server/http
+      attribute: bind
+      value: :{{ fisheye_catalina_connector_port }}
+    - xpath: /config/web-server/http
+      attribute: proxy-scheme
       value: "{{ fisheye_catalina_connector_scheme }}"
-    - xpath: "/config/web-server/http"
-      attribute: "proxy-host"
+    - xpath: /config/web-server/http
+      attribute: proxy-host
       value: "{{ fisheye_catalina_connector_proxyname }}"
-    - xpath: "/config/web-server/http"
-      attribute: "proxy-port"
+    - xpath: /config/web-server/http
+      attribute: proxy-port
       value: "{{ fisheye_catalina_connector_proxyport }}"
-    - xpath: "/config/web-server"
-      attribute: "context"
+    - xpath: /config/web-server
+      attribute: context
       value: "{{ fisheye_catalina_context_path }}"
   notify:
     - fisheye | systemctl restart fisheye.service
 
 - name: patch /opt/atlassian/fisheye/content/WEB-INF/web.xml
   vars:
-    ansible_python_interpreter: "python3"
+    ansible_python_interpreter: python3
   community.general.xml:
     path: "{{ fisheye_catalina }}/content/WEB-INF/web.xml"
     xpath: "{{ item.xpath }}"
     namespaces:
-      ns: "http://java.sun.com/xml/ns/javaee"
+      ns: http://java.sun.com/xml/ns/javaee
     value: "{{ item.value }}"
     pretty_print: true
-    state: "present"
+    state: present
   loop:
-    - xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
+    - xpath: /ns:web-app/ns:session-config/ns:session-timeout
       value: "{{ fisheye_session_timeout | int }}"
-    - xpath: "/ns:web-app/ns:session-config/ns:tracking-mode"
-      value: "COOKIE"
-    - xpath: "/ns:web-app/ns:session-config/ns:cookie-config/ns:max-age"
+    - xpath: /ns:web-app/ns:session-config/ns:tracking-mode
+      value: COOKIE
+    - xpath: /ns:web-app/ns:session-config/ns:cookie-config/ns:max-age
       value: "{{ (fisheye_session_timeout | int) * 60 }}"
   notify:
     - fisheye | systemctl restart fisheye.service
@@ -205,8 +204,8 @@
 
 - name: systemctl start fisheye.service
   ansible.builtin.service:
-    name: "fisheye.service"
-    state: "started"
+    name: fisheye.service
+    state: started
     enabled: true
   changed_when: false
   failed_when: false
