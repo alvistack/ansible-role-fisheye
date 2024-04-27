@@ -53,7 +53,7 @@ if [ ! -x "$JAVACMD" ] ; then
 fi
 
 FISHEYE_OPTS="-Dfile.encoding=UTF-8 $FISHEYE_OPTS"
-FISHEYE_OPTS="-XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 $FISHEYE_OPTS"
+FISHEYE_OPTS="{{ fisheye_jvm_gc_args }} $FISHEYE_OPTS"
 FISHEYE_OPTS="-Xms{{ fisheye_jvm_minimum_memory }} -Xmx{{ fisheye_jvm_maximum_memory }} -XX:ReservedCodeCacheSize={{ fisheye_jvm_reserved_code_cache_size }} -XX:MaxPermSize=256m -Xss512k $FISHEYE_OPTS"
 FISHEYE_OPTS="{{ fisheye_jvm_support_recommended_args }} $FISHEYE_OPTS"
 
