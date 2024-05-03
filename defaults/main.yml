@@ -42,6 +42,7 @@ fisheye_catalina_connector_secure:
 fisheye_catalina_connector_proxyname:
 fisheye_catalina_connector_proxyport:
 fisheye_catalina_context_path:
+
 # Atlassian Support recommended JVM arguments.
 fisheye_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
@@ -49,6 +50,11 @@ fisheye_jvm_support_recommended_args: >-
   -XX:+UnlockExperimentalVMOptions
   -XX:+UseCGroupMemoryLimitForHeap
   -XX:MaxRAMFraction=1
+
+# Default garbage collector and its settings.
+fisheye_jvm_gc_args: >-
+  -XX:+UseG1GC
+  -XX:+ExplicitGCInvokesConcurrent
 
 # Session timeout (120 minutes = 2 hours).
 fisheye_session_timeout: "120"
