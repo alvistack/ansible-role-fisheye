@@ -37,8 +37,8 @@ fisheye_jvm_reserved_code_cache_size: 512m
 
 # Proxy and context path setup.
 fisheye_catalina_connector_port: "8060"
-fisheye_catalina_connector_scheme:
-fisheye_catalina_connector_secure:
+fisheye_catalina_connector_scheme: "http"
+fisheye_catalina_connector_secure: "false"
 fisheye_catalina_connector_proxyname:
 fisheye_catalina_connector_proxyport:
 fisheye_catalina_context_path:
