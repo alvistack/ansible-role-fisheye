@@ -162,7 +162,7 @@
   loop:
     - xpath: /config/web-server/http
       attribute: bind
-      value: :{{ fisheye_catalina_connector_port }}
+      value: :{{ (fisheye_catalina_connector_port | int) | string }}
     - xpath: /config/web-server/http
       attribute: proxy-scheme
       value: "{{ fisheye_catalina_connector_scheme }}"
@@ -171,7 +171,7 @@
       value: "{{ fisheye_catalina_connector_proxyname }}"
     - xpath: /config/web-server/http
       attribute: proxy-port
-      value: "{{ fisheye_catalina_connector_proxyport }}"
+      value: "{{ (fisheye_catalina_connector_proxyport | int) | string }}"
     - xpath: /config/web-server
       attribute: context
       value: "{{ fisheye_catalina_context_path }}"
@@ -191,11 +191,11 @@
     state: present
   loop:
     - xpath: /ns:web-app/ns:session-config/ns:session-timeout
-      value: "{{ fisheye_session_timeout | int }}"
+      value: "{{ (fisheye_session_timeout | int) | string }}"
     - xpath: /ns:web-app/ns:session-config/ns:tracking-mode
-      value: COOKIE
+      value: "COOKIE"
     - xpath: /ns:web-app/ns:session-config/ns:cookie-config/ns:max-age
-      value: "{{ (fisheye_autologin_cookie_age | int) * 60 }}"
+      value: "{{ ((fisheye_autologin_cookie_age | int) * 60) | string }}"
   notify:
     - fisheye | systemctl restart fisheye.service
 
